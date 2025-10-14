@@ -1,103 +1,176 @@
 <!DOCTYPE html>
 <html lang="es">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tecno Noticias</title> 
-<link rel="stylesheet" href="style_menu.css" />
+  <title>Tecno Noticias</title>
+  <link rel="stylesheet" href="style_menu.css" />
 </head>
 <body>
- 
-  <div class="contenedor_menu">
-    <h4>  
-    <nav class="opciones">
-    <ul class="nav_menu">
-    <li><a href="#"> Podcast</a></li>
-    <li> <a href="#"> Musica</a> </li>
-    <li> <a href="#"> Corridos</a> </li>
+  <!-- Botón Hamburguesa -->
+  <button class="hamburger-btn" id="hamburgerBtn">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Menú Full Screen -->
+  <div class="fullscreen-menu" id="fullscreenMenu">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    
+    <!-- Encabezado del menú con logo y título -->
+    <div class="menu-header">
+      <img src="logo.png" alt="Logo" class="menu-logo">
+      <h1 class="menu-title">Tecnonoticias</h1>
+    </div>
+    
+    <ul class="menu-links">
+      <li><a href="#inicio" onclick="closeMenu()">Inicio</a></li>
+      <li><a href="#servicios" onclick="closeMenu()">Videojuegos</a></li>
+      <li><a href="#productos" onclick="closeMenu()">Software</a></li>
+      <li><a href="#nosotros" onclick="closeMenu()">Podcast</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Tutoriales</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Más</a></li>
+      <li>
+        <div class="boton">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+          <button class="theme-toggle" id="themeToggle">Modo Oscuro</button>
+        </div>
+      </li>
     </ul>
-  </nav>
-  </h4>
-
-  </div> 
-<div class="titulo">
-      <section class="todo">
-      <aside class="menu desplagable">
-      <header class="menu">
-        <img src="boton.png" alt="" class="logo"/>
-        <button class="desplegable"
-        <span class="simbolo">
-          
-        </span>
-      </header>
-    </aside>
-    </section>
-
-
-   <header>TECNO NOTICIAS</header>
-   <button class="theme-toggle" id="themeToggle">Modo Oscuro</button>
-
-    <div class="boton">
-      <form action="/buscar" method="get">
-        <input type="text" name="q" placeholder="Buscar...">
-        <button type="submit">Buscar</button>
-      </form>
-</div>
-
   </div>
- </div>
-</nav>
 
+  <header class="main_menu">
+    <div class="logo-container">
+      <img src="https://via.placeholder.com/40x40/4a6fa5/ffffff?text=T" alt="Logo" class="logo-img">
+      <h1 class="site-title">Tecnonoticias</h1>
+    </div>
 
-  <nav class="barra_principal">
-    <a href="#"><img src=""/> Videojuegos</a>
-    <a href="#"><img src=""/> Software y apps</a>
-    <a href="podcast.html"><img src=""/> Podcast</a>
-    <a href="#"><img src=""/> Tutoriales</a>
-    <a href="#"><img src=""/> Inteligencia artificial</a>
-    <a href="ciberseguridad.html"><img src=""/> Ciberseguridad</a>
-    <a href="#"><img src=""/> Robotica</a>
-  </nav>
-
-  <div class="contenido">
-
-    <div class="noticias">
-      <div class="noticia">
-        <img src="nvidia.png" alt="Nvidia">
-        <p>Las acciones de Nvidia caen mientras las ganancias del fabricante de chips son buenas, pero no sorprendentes</p>
+    <nav class="barra_principal">
+      <a href="#"><img src="" alt=""> Videojuegos</a>
+      <a href="#"><img src="" alt=""> Software y apps</a>
+      <a href="podcast.html"><img src="" alt=""> Podcast</a>
+      <a href="#"><img src="" alt=""> Tutoriales</a>
+      <a href="#"><img src="" alt=""> Inteligencia artificial</a>
+      <a href="ciberseguridad.html"><img src="" alt=""> Ciberseguridad</a>
+      <a href="#"><img src="" alt=""> Robotica</a>
+      <div class="search-container">
+        <button class="search-toggle" id="searchToggle">🔍</button>
+        <div class="search-box" id="searchBox">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
       </div>
+    </nav>
+  </header>
 
-      <div class="noticia">
-        <img src="revolucion.png" alt="Realidad Virtual">
-        <p>La realidad virtual revoluciona la tecnología</p>
-      </div>
-
-      <div class="noticia">
-        <img src="ninten 2.png" alt="Nintendo Switch">
-        <p>El impacto del mercado con la nueva Nintendo Switch 2</p>
+  <!-- Main Content -->
+  <div class="container main-content">
+    <!-- Artículos principales -->
+    <section class="featured-articles">
+      <h2>Noticias Destacadas</h2>
+      
+      <article class="article">
+        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1593115057322-e94b77572f20?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+        <div class="article-content">
+          <h3><a href="https://example.com/nvidia-stock-falls" target="_blank">Nvidia stock falls as the chipmaker's gaming car are good, but not stellar</a></h3>
+          <p><a href="https://example.com/nvidia-stock-falls-espanol" target="_blank">Las acciones de Nvidia caen mientras las ganancias del fabricante de chips son buenas, pero no sorprendentes.</a></p>
+          <a href="https://example.com/nvidia-stock-falls-full" target="_blank" class="read-more">Leer más</a>
+        </div>
+      </article>
+      
+      <article class="article">
+        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+        <div class="article-content">
+          <h3><a href="https://example.com/apple-logo-button" target="_blank">Apple: La manzana trasera de tu iPhone también es un botón</a></h3>
+          <p><a href="https://example.com/apple-logo-button-how-to" target="_blank">Descubre cómo activar esta función oculta que transforma el logo de Apple en un botón funcional.</a></p>
+          <a href="https://example.com/apple-logo-button-full" target="_blank" class="read-more">Leer más</a>
+        </div>
+      </article>
+      
+      <article class="article">
+        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1580327344181-c1163234e5a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+        <div class="article-content">
+          <h3><a href="https://example.com/nintendo-switch-2" target="_blank">El impacto del mercado con la nueva Nintendo Switch 2</a></h3>
+          <p><a href="https://example.com/nintendo-switch-2-analysis" target="_blank">Analizamos cómo la próxima consola de Nintendo podría cambiar el panorama del gaming.</a></p>
+          <a href="https://example.com/nintendo-switch-2-full" target="_blank" class="read-more">Leer más</a>
+        </div>
+      </article>
+    </section>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Noticias Recientes</h2>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/meta-vr-advances" target="_blank">Meta anuncia nuevos avances en Realidad Virtual</a></h3>
+        <p><a href="https://example.com/meta-vr-advances-details" target="_blank">La compañía presenta mejoras significativas en sus dispositivos de VR.</a></p>
       </div>
       
-      <div class="noticia">
-        <img src="podcast.png" alt="Podcast">
-        <p>Podcast diseñado para mantenerte informado sobre las últimas tendencias tecnológicas</p>
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/samsung-foldable" target="_blank">Samsung lanza su nuevo smartphone plegable</a></h3>
+        <p><a href="https://example.com/samsung-foldable-specs" target="_blank">El Galaxy Z Fold 5 incluye mejoras en durabilidad y rendimiento.</a></p>
       </div>
-      <div class="noticia">
-        <img src="apple.png" alt="Tutoriales">
-        <p>La manzana trasera de tu iPhone también es un botón: te decimos cómo activarlo</p>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/google-algorithm-update" target="_blank">Google actualiza su algoritmo de búsqueda</a></h3>
+        <p><a href="https://example.com/google-algorithm-impact" target="_blank">Los cambios afectarán a cómo se posicionan los sitios web en los resultados.</a></p>
       </div>
-      <div class="noticia">
-        <img src="mario.jpg" alt="Videojuegos">
-        <p>Nintendo anuncia la nueva película “The Super Mario Galaxy Movie” y estas son sus primeras imágenes</p>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/intel-gaming-processors" target="_blank">Intel presenta sus nuevos procesadores para gaming</a></h3>
+        <p><a href="https://example.com/intel-gaming-performance" target="_blank">La serie 14 ofrece mejoras significativas en rendimiento y eficiencia energética.</a></p>
       </div>
-    </div>
+    </aside>
   </div>
 
+  <!-- Podcast Section -->
+  <section class="podcast-section">
+    <div class="container">
+      <h2>Tecnonoticas Podcast</h2>
+      <p><a href="https://example.com/tech-podcast" target="_blank">Podcast diseñado para mantenerle informado sobre las últimas tendencias tecnológicas</a></p>
+      <a href="https://example.com/listen-podcast" target="_blank" class="podcast-button">Escuchar ahora</a>
+    </div>
+  </section>
 
+  <!-- Footer -->
   <footer>
-     <p>&copy; 2025 Mi Empresa. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a></p>
-          <address>
-                <p>Contáctanos en: info@miempresa.com</p>
-            </address>
-  </footer> 
-   <script src="comando.js"></script>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>TECHNEWS</h3>
+          <p>Tu fuente confiable de noticias tecnológicas, análisis y tendencias.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <a href="#">Inicio</a>
+          <a href="#">Tecnología</a>
+          <a href="#">Gaming</a>
+          <a href="#">Dispositivos</a>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <a href="#">Redacción</a>
+          <a href="#">Publicidad</a>
+          <a href="#">Trabaja con nosotros</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2025 Mi Empresa. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a></p>
+        <address>
+          <p>Contáctanos en: info@miempresa.com</p>
+        </address>
+      </div>
+    </div>
+  </footer>
+<script src="comando.js"></script>
 </body>
 </html>
