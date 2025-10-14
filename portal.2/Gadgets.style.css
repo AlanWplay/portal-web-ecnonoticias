@@ -1,0 +1,100 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f9;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+/*  ENCABEZADO */
+header {
+  text-align: center;
+  background: linear-gradient(90deg, #3a3f44, #3a3f44);
+  color: white;
+  padding: 25px 0 15px;
+  font-size: 1.6rem;
+  position: relative;
+}
+
+/* BOTÓN  */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: white;
+  color: #3a3f44;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.back-button:hover {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 30px;
+}
+
+
+.video-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+.thumbnail {
+  position: relative;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.video-card:hover .thumbnail img {
+  transform: scale(1.05);
+}
+
+
+.video-title {
+  padding: 15px;
+  font-size: 1rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.video-card:hover .video-title {
+  color: #3a3f44;
+}
+
+/*PIE DE PÁGINA*/
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #3a3f44;
+  color: white;
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
