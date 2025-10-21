@@ -7,11 +7,74 @@
   <link rel="stylesheet" href="Gadgets.style.css">
 </head>
 <body>
-  <header>
-    <h1>Gadgets</h1>
-    <a href="/index.html" class="back-button">⬅ Volver al inicio</a>
-  </header>
+   <!-- Botón Hamburguesa -->
+  <button class="hamburger-btn" id="hamburgerBtn">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
 
+  <!-- Menú Full Screen -->
+  <div class="fullscreen-menu" id="fullscreenMenu">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    
+    <!-- Encabezado del menú con logo y título -->
+    <div class="menu-header">
+      <img src="logo.png" alt="Logo" class="menu-logo">
+      <h1 class="menu-title">Tecnonoticias</h1>
+    </div>
+    
+    <ul class="menu-links">
+      <li><a href="/index.html" onclick="closeMenu()">Inicio</a></li>
+      <li><a href="#servicios" onclick="closeMenu()">Videojuegos</a></li>
+      <li><a href="#productos" onclick="closeMenu()">Software</a></li>
+      <li><a href="#nosotros" onclick="closeMenu()">Podcast</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Tutoriales</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Más</a></li>
+      <li>
+        <div class="boton">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+          <button class="theme-toggle" id="themeToggle">Modo Oscuro</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <header class="main_menu">
+    <div class="logo-container">
+      <img src="https://via.placeholder.com/40x40/4a6fa5/ffffff?text=T" alt="Logo" class="logo-img">
+      <h1 class="site-title">Tecnonoticias</h1>
+    </div>
+
+    <nav class="barra_principal">
+      <a href=""><img src="" alt=""> Videojuegos</a>
+      <a href="#"><img src="" alt=""> Software y apps</a>
+      <a href="portal.2/podcast.html"><img src="" alt=""> Podcast</a>
+      <a href="#"><img src="" alt=""> Tutoriales</a>
+      <a href="portal.2/Gadgets.html"><img src="" alt=""> Gadgets</a>
+      <a href="ciberseguridad.html"><img src="" alt=""> Ciberseguridad</a>
+      <a href="#"><img src="" alt=""> Robotica</a>
+
+     <nav class="iniciar"> <a href="registro.html"><img src="" alt=""> Iniciar sesion</a></nav>
+     
+     <div class="search-container">
+        <button class="search-toggle" id="searchToggle">🔍</button>
+        <div class="search-box" id="searchBox">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <header>
+
+
+   
   <main class="video-grid">
     <div class="video-card">
       <div class="thumbnail">
@@ -73,5 +136,105 @@
   <footer>
     <p>© 2025 Gadgets| Todos los derechos reservados</p>
   </footer>
+  <script>// Sistema de modo oscuro unificado
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      // Verificar preferencia del sistema o tema guardado
+      if (localStorage.getItem('theme') === 'dark' || 
+          (localStorage.getItem('theme') === null && prefersDarkScheme.matches)) {
+        document.body.classList.add('dark-mode');
+        themeToggle.textContent = 'Modo Claro';
+      } else {
+        document.body.classList.remove('dark-mode');
+        themeToggle.textContent = 'Modo Oscuro';
+      }
+      
+      // Alternar tema al hacer clic en el botón
+      themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+          themeToggle.textContent = 'Modo Claro';
+          localStorage.setItem('theme', 'dark');
+        } else {
+          themeToggle.textContent = 'Modo Oscuro';
+          localStorage.setItem('theme', 'light');
+        }
+      });
+      
+      // Escuchar cambios en la preferencia del sistema
+      prefersDarkScheme.addEventListener('change', function(e) {
+        if (localStorage.getItem('theme') === null) {
+          if (e.matches) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = 'Modo Claro';
+          } else {
+            document.body.classList.remove('dark-mode');
+            themeToggle.textContent = 'Modo Oscuro';
+          }
+        }
+      });
+
+      // Menu desplegable
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const fullscreenMenu = document.getElementById('fullscreenMenu');
+      const closeBtn = document.getElementById('closeBtn');
+
+      function openMenu() {
+        fullscreenMenu.classList.add('active');
+        hamburgerBtn.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Previene el scroll
+      }
+
+      function closeMenu() {
+        fullscreenMenu.classList.remove('active');
+        hamburgerBtn.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restaura el scroll
+      }
+
+      // Event listeners
+      hamburgerBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+
+      // Cerrar menú al hacer clic en un enlace
+      document.querySelectorAll('.menu-links a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // Cerrar menú con la tecla ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMenu();
+        }
+      });
+
+      // Cerrar menú al hacer clic fuera del contenido del menú
+      fullscreenMenu.addEventListener('click', (e) => {
+        if (e.target === fullscreenMenu) {
+          closeMenu();
+        }
+      });
+
+      // Buscador con lupa desplegable
+      const searchToggle = document.getElementById('searchToggle');
+      const searchBox = document.getElementById('searchBox');
+
+      searchToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        searchBox.classList.toggle('active');
+      });
+
+      // Cerrar el buscador al hacer clic fuera
+      document.addEventListener('click', function() {
+        searchBox.classList.remove('active');
+      });
+
+      // Evitar que se cierre al hacer clic dentro del buscador
+      searchBox.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    });</script>
 </body>
 </html>
