@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecno Noticias</title>
+  <link rel="stylesheet" href="style_menu 2.css" />
+</head>
+<body>
+  <!-- Botón Hamburguesa -->
+  <button class="hamburger-btn" id="hamburgerBtn">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Menú Full Screen -->
+  <div class="fullscreen-menu" id="fullscreenMenu">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    
+    <!-- Encabezado del menú con logo y título -->
+    <div class="menu-header">
+      <img src="logo.png" alt="Logo" class="menu-logo">
+      <h1 class="menu-title">Tecnonoticias</h1>
+    </div>
+    
+    <ul class="menu-links">
+      <li><a href="#inicio" onclick="closeMenu()">Inicio</a></li>
+      <li><a href="#servicios" onclick="closeMenu()">Videojuegos</a></li>
+      <li><a href="#productos" onclick="closeMenu()">Software</a></li>
+      <li><a href="#nosotros" onclick="closeMenu()">Podcast</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Tutoriales</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Más</a></li>
+      <li>
+        <div class="boton">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+          <button class="theme-toggle" id="themeToggle">Modo Oscuro</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <header class="main_menu">
+    <div class="logo-container">
+      <img src="https://via.placeholder.com/40x40/4a6fa5/ffffff?text=T" alt="Logo" class="logo-img">
+      <h1 class="site-title">Tecnonoticias</h1>
+    </div>
+
+    <nav class="barra_principal">
+      <a href="#"><img src="" alt=""> Videojuegos</a>
+      <a href="#"><img src="" alt=""> Software y apps</a>
+      <a href="portal.2/podcast.html"><img src="" alt=""> Podcast</a>
+      <a href="#"><img src="" alt=""> Tutoriales</a>
+      <a href="portal.2/Gadgets.html"><img src="" alt=""> Gadgets</a>
+      <a href="ciberseguridad.html"><img src="" alt=""> Ciberseguridad</a>
+      <a href="#"><img src="" alt=""> Robotica</a>
+
+     <nav class="iniciar"> <a href="registro.html"><img src="" alt=""> Iniciar sesion</a></nav>
+     
+     <div class="search-container">
+        <button class="search-toggle" id="searchToggle">🔍</button>
+        <div class="search-box" id="searchBox">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container main-content">
+  <div class="content-wrapper">
+    <!-- Artículos principales -->
+    <section class="featured-articles">
+      <h2>Microsoft traslada producción fuera de China ante tensiones comerciales con EE. UU.</h2>
+      <section class="foto">
+        <img src="/dolar.png" alt="nvidiatrans">
+
+      <p> Microsoft Corp (NASDAQ:MSFT) planea trasladar la mayor parte de la fabricación de sus 
+        nuevos productos fuera de China a partir del próximo año, uniéndose así a otros gigantes 
+        tecnológicos estadounidenses que están expandiendo su producción más allá de la segunda 
+        economía más grande del mundo, según un informe publicado el jueves.</p>
+
+        <p><b>Microsoft traslada su producción tecnológica fuera de China</b></p>
+
+        <p>El gigante del software tiene como objetivo trasladar la producción de sus portátiles 
+          Surface y de sus servidores para centros de datos, incluidos componentes clave y ensamblaje,
+           a partir del próximo año, informó Nikkei Asia, citando fuentes.</p>
+
+        <p>Al mismo tiempo, Google — propiedad de Alphabet Inc. (NASDAQ:GOOG) (NASDAQ:GOOGL) — también 
+          está instando a sus proveedores a aumentar rápidamente la producción de servidores en Tailandia, 
+          con un ensamblador que duplicará su capacidad mediante la construcción de cuatro nuevas 
+          instalaciones, informó Nikkei Asia, y añadió que Amazon (NASDAQ:AMZN) Web Services también está 
+          adoptando producción fuera de China, especialmente para la fabricación de sus servidores de centros 
+          de datos de inteligencia artificial más sensibles.</p>   
+
+          <p>Microsoft, Amazon y Google no respondieron a las solicitudes de comentarios de Benzinga</p>
+
+          <p>Las empresas tecnológicas chinas han desempeñado durante mucho tiempo papeles clave en las 
+            cadenas de suministro mundiales de servidores, gracias a su creciente capacidad tecnológica, 
+            calidad y precios competitivos. Pero el aumento de las tensiones entre Estados Unidos y China 
+            está ahora impulsando a las compañías a diversificarse.</p>
+
+            <p><b>El trasfondo: tensiones crecientes entre Washington y Pekín</p></b>
+
+            <p>Microsoft ha estado reduciendo su dependencia de China. En abril, la compañía finalizó su 
+              empresa conjunta con Wicresoft y recortó 2.000 puestos de trabajo. Después de la reacción en 
+              Estados Unidos por utilizar ingenieros con sede en China para proyectos de apoyo a la nube 
+              militar, la empresa anunció en julio que pondría fin a esa práctica.</p>
+
+              <p>La tensión geopolítica entre Estados Unidos y China ha ido en aumento: China ha lanzado 
+                una ofensiva aduanera sobre los chips de inteligencia artificial de Nvidia Corp. 
+                (NASDAQ:NVDA) y el presidente estadounidense Donald Trump ha expresado su preocupación 
+                por las restricciones de China a las exportaciones de tierras raras. El aumento de las 
+                tensiones en el estrecho de Taiwán también está empujando a las empresas estadounidenses a 
+                buscar alternativas de producción fuera de la Gran China.</p>
+      </section>
+    </section>
+    
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Noticias Recientes</h2>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/meta-vr-advances" target="_blank">Meta anuncia nuevos avances en Realidad Virtual</a></h3>
+        <p><a href="https://example.com/meta-vr-advances-details" target="_blank">La compañía presenta mejoras significativas en sus dispositivos de VR.</a></p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/samsung-foldable" target="_blank">Samsung lanza su nuevo smartphone plegable</a></h3>
+        <p><a href="https://example.com/samsung-foldable-specs" target="_blank">El Galaxy Z Fold 5 incluye mejoras en durabilidad y rendimiento.</a></p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/google-algorithm-update" target="_blank">Google actualiza su algoritmo de búsqueda</a></h3>
+        <p><a href="https://example.com/google-algorithm-impact" target="_blank">Los cambios afectarán a cómo se posicionan los sitios web en los resultados.</a></p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/intel-gaming-processors" target="_blank">Intel presenta sus nuevos procesadores para gaming</a></h3>
+        <p><a href="https://example.com/intel-gaming-performance" target="_blank">La serie 14 ofrece mejoras significativas en rendimiento y eficiencia energética.</a></p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Tecnonoticas</h3>
+          <p>Tu fuente confiable de noticias tecnológicas, análisis y tendencias.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <a href="#">Inicio</a>
+          <a href="#">Tecnología</a>
+          <a href="#">Gaming</a>
+          <a href="#">Dispositivos</a>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <a href="#">Redacción</a>
+          <a href="#">Publicidad</a>
+          <a href="#">Trabaja con nosotros</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2025 Mi Empresa. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a></p>
+        <address>
+          <p>Contáctanos en: info@miempresa.com</p>
+        </address>
+      </div>
+    </div>
+  </footer>
+<script src="comando 2.js"></script>
+</body>
+</html>
