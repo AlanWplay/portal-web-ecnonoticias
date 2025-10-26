@@ -98,3 +98,95 @@
         e.stopPropagation();
       });
     });
+
+
+
+
+    // carusel
+   class Carrusel {
+            constructor(contenedor) {
+                this.contenedor = contenedor;
+                this.slides = contenedor.querySelector('.carrusel-contenedor');
+                this.slideItems = contenedor.querySelectorAll('.carrusel-slide');
+                this.indicadores = contenedor.querySelectorAll('.indicador');
+                this.btnPrev = contenedor.querySelector('.carrusel-prev');
+                this.btnNext = contenedor.querySelector('.carrusel-next');
+                this.toggleBtn = document.getElementById('toggleAutoPlay');
+                
+                this.slideActual = 0;
+                this.totalSlides = this.slideItems.length;
+                this.autoPlayInterval = null;
+                this.isAutoPlaying = true;
+                
+                this.iniciar();
+            }
+            
+            iniciar() {
+                // Event listeners para botones
+                this.btnPrev.addEventListener('click', () => this.slideAnterior());
+                this.btnNext.addEventListener('click', () => this.slideSiguiente());
+                
+                // Event listeners para indicadores
+                this.indicadores.forEach((indicador, index) => {
+                    indicador.addEventListener('click', () => this.irASlide(index));
+                });
+                
+                // Control de auto-play
+                this.toggleBtn.addEventListener('click', () => this.toggleAutoPlay());
+                
+                // Auto-play
+                this.iniciarAutoPlay();
+            }
+            
+            slideSiguiente() {
+                this.slideActual = (this.slideActual + 1) % this.totalSlides;
+                this.actualizarCarrusel();
+            }
+            
+            slideAnterior() {
+                this.slideActual = (this.slideActual - 1 + this.totalSlides) % this.totalSlides;
+                this.actualizarCarrusel();
+            }
+            
+            irASlide(index) {
+                this.slideActual = index;
+                this.actualizarCarrusel();
+            }
+            
+            actualizarCarrusel() {
+                const translateX = -this.slideActual * 100;
+                this.slides.style.transform = `translateX(${translateX}%)`;
+                
+                // Actualizar indicadores
+                this.indicadores.forEach((indicador, index) => {
+                    indicador.classList.toggle('activo', index === this.slideActual);
+                });
+            }
+            
+            iniciarAutoPlay() {
+                this.autoPlayInterval = setInterval(() => {
+                    this.slideSiguiente();
+                }, 5000); // Cambia cada 5 segundos
+                this.isAutoPlaying = true;
+                this.toggleBtn.textContent = 'Pausar';
+            }
+            
+            detenerAutoPlay() {
+                clearInterval(this.autoPlayInterval);
+                this.isAutoPlaying = false;
+                this.toggleBtn.textContent = 'Reanudar';
+            }
+            
+            toggleAutoPlay() {
+                if (this.isAutoPlaying) {
+                    this.detenerAutoPlay();
+                } else {
+                    this.iniciarAutoPlay();
+                }
+            }
+        }
+        
+        // Inicializar el carrusel
+        document.addEventListener('DOMContentLoaded', () => {
+            const carrusel = new Carrusel(document.querySelector('.carrusel'));
+        });

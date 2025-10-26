@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecno Noticias - Gadgets</title>
+  <style>
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #333;
+      --header-bg: #3a3f44;
+      --header-text: white;
+      --card-bg: white;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --button-bg: #0071e3;
+      --button-hover: #0056b3;
+      --menu-bg: rgba(0, 0, 0, 0.95);
+      --footer-bg: #2c2f33;
+      --accent-color: #0071e3;
+      --apple-blue: #0071e3;
+    }
+
+    .dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --header-bg: #2c3e50;
+      --header-text: #f0f0f0;
+      --card-bg: #2d2d2d;
+      --card-shadow: rgba(0, 0, 0, 0.3);
+      --button-bg: #2997ff;
+      --button-hover: #1d7acc;
+      --menu-bg: rgba(30, 30, 30, 0.98);
+      --footer-bg: #1a1a1a;
+      --accent-color: #2997ff;
+      --apple-blue: #2997ff;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 20px;
+      background-color: var(--header-bg);
+      width: 100%;
+      border-bottom: 2px solid #e9ecef;
+      position: relative;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .main_menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      border-radius: 5px;
+    }
+
+    .site-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--header-text);
+      margin: 0;
+    }
+
+    /* Barra principal */
+    .barra_principal {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 15px;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .barra_principal a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: var(--text-color);
+      background-color: var(--card-bg);
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .barra_principal a:hover {
+      background-color: var(--button-bg);
+      color: white;
+    }
+
+    .barra_principal a.active {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    /* Contenido principal */
+    .contenido {
+      padding: 30px;
+      margin-top: 120px;
+    }
+
+    /* Estilos generales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-top: 100px;
+      margin-bottom: 40px;
+    }
+
+    /* CSS adicional para crear el layout de columnas */
+    .content-wrapper {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .featured-articles {
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    /* Estilos para artículos */
+    .featured-articles h2 {
+      font-size: 32px;
+      width: auto;
+      padding: 30px 0;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .article {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      gap: 50px;
+      box-shadow: 0 4px 6px var(--card-shadow);
+      margin-bottom: 30px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px var(--card-shadow);
+    }
+
+    .article-image {
+      height: 200px;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .article-content {
+      padding: 20px;
+    }
+
+    .article h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    .article h3 a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .article h3 a:hover {
+      color: var(--accent-color);
+    }
+
+    .read-more {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .read-more:hover {
+      background-color: #0056b3;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px var(--card-shadow);
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .sidebar-article {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      transition: transform 0.3s;
+    }
+
+    .sidebar-article:hover {
+      transform: translateX(5px);
+    }
+
+    .sidebar-article:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .sidebar-article h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-article h3 a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .sidebar-article h3 a:hover {
+      color: var(--accent-color);
+    }
+
+    .sidebar-article p {
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .copyright {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .content-wrapper {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+      }
+      
+      .barra_principal {
+        display: none;
+      }
+      
+      .featured-articles h2 {
+        font-size: 24px;
+        padding: 15px;
+      }
+      
+      .gadget-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .specs-comparison {
+        flex-direction: column;
+      }
+    }
+
+    /* CSS para buscador */
+    .boton {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      justify-content: right;
+      flex-wrap: wrap;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="text"] {
+      padding: 8px 10px;
+      border: none;
+      border-radius: 1px 0 0 1px;
+      outline: none;
+      width: 10px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    button[type="submit"] {
+      padding: 8px 15px;
+      background-color: #4cc9f0;
+      color: white;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3aa8d0;
+    }
+
+    .theme-toggle {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--button-hover);
+    }
+
+    /* Menu desplegable */
+    .hamburger-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: var(--header-bg);
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hamburger-line {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: 0.3s;
+    }
+
+    /* Menú fullscreen */
+    .fullscreen-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: var(--menu-bg);
+      z-index: 1000;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+      overflow-y: auto;
+    }
+
+    .fullscreen-menu.active {
+      left: 0;
+    }
+
+    /* Encabezado del menú */
+    .menu-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .menu-logo {
+      height: 50px;
+      width: auto;
+      border-radius: 5px;
+    }
+
+    .menu-title {
+      font-size: 28px;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Botón cerrar */
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    /* Lista de enlaces vertical */
+    .menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+      margin-bottom: 50px;
+      width: 100%;
+    }
+
+    .menu-links li {
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-links li a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      display: block;
+      padding: 10px 0;
+    }
+
+    .menu-links li a:hover {
+      color: #4cc9f0;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Buscador con lupa desplegable */
+    .search-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .search-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      padding: 5px;
+    }
+
+    .search-box {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--card-bg);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 100;
+    }
+
+    .search-box.active {
+      display: block;
+    }
+
+    .search-box input {
+      width: 200px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .search-box button {
+      margin-left: 5px;
+      padding: 8px 12px;
+      background-color: #4cc9f0;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Estilos específicos para la noticia de gadgets */
+    .content-wrapper .foto{
+      position: relative;
+      margin: 30px 0;
+    }
+
+    .content-wrapper .foto img{
+      max-width: 100%;
+      display: block;
+      height: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .content-wrapper p{
+      padding: 20px 0;
+      text-align: justify;
+      font-size: 18px;
+    }
+    
+    .article-meta {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    
+    .dark-mode .article-meta {
+      color: #aaa;
+    }
+    
+    .highlight {
+      background-color: rgba(0, 113, 227, 0.1);
+      padding: 15px;
+      border-left: 4px solid var(--apple-blue);
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .gadget-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .gadget-card {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px var(--card-shadow);
+      border-top: 3px solid var(--apple-blue);
+    }
+    
+    .gadget-card h4 {
+      color: var(--apple-blue);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    
+    .gadget-card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .gadget-card li {
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .dark-mode .gadget-card li {
+      border-bottom: 1px solid #444;
+    }
+    
+    .release-info {
+      display: flex;
+      justify-content: space-around;
+      background: linear-gradient(135deg, var(--apple-blue), #4d94ff);
+      color: white;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 30px 0;
+      text-align: center;
+    }
+    
+    .info-item {
+      flex: 1;
+    }
+    
+    .info-item h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+    
+    .info-item p {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+    }
+    
+    .tech-badge {
+      display: inline-block;
+      background-color: var(--apple-blue);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+    
+    .specs-comparison {
+      display: flex;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .spec-column {
+      flex: 1;
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px var(--card-shadow);
+    }
+    
+    .spec-column h4 {
+      color: var(--apple-blue);
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 18px;
+    }
+    
+    .feature-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .feature-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .dark-mode .feature-list li {
+      border-bottom: 1px solid #444;
+    }
+    
+    .price-tag {
+      background: linear-gradient(135deg, #34c759, #30d158);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Botón Hamburguesa -->
+  <button class="hamburger-btn" id="hamburgerBtn">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Menú Full Screen -->
+  <div class="fullscreen-menu" id="fullscreenMenu">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    
+    <!-- Encabezado del menú con logo y título -->
+    <div class="menu-header">
+      <img src="https://via.placeholder.com/50x50/0071e3/ffffff?text=T" alt="Logo" class="menu-logo">
+      <h1 class="menu-title">Tecnonoticias</h1>
+    </div>
+    
+    <ul class="menu-links">
+      <li><a href="/index.html" onclick="closeMenu()">Inicio</a></li>
+      <li><a href="#servicios" onclick="closeMenu()">Videojuegos</a></li>
+      <li><a href="#productos" onclick="closeMenu()">Software</a></li>
+      <li><a href="#nosotros" onclick="closeMenu()">Podcast</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Tutoriales</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Gadgets</a></li>
+      <li>
+        <div class="boton">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+          <button class="theme-toggle" id="themeToggle">Modo Oscuro</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <header class="main_menu">
+    <div class="logo-container">
+      <img src="https://via.placeholder.com/40x40/0071e3/ffffff?text=T" alt="Logo" class="logo-img">
+      <h1 class="site-title">Tecnonoticias</h1>
+    </div>
+
+    <nav class="barra_principal">
+      <a href="#"><img src="" alt=""> Videojuegos</a>
+      <a href="#"><img src="" alt=""> Software y apps</a>
+      <a href="portal.2/podcast.html"><img src="" alt=""> Podcast</a>
+      <a href="#"><img src="" alt=""> Tutoriales</a>
+      <a href="portal.2/Gadgets.html" class="active"><img src="" alt=""> Gadgets</a>
+      <a href="ciberseguridad.html"><img src="" alt=""> Ciberseguridad</a>
+      <a href="#"><img src="" alt=""> Robotica</a>
+
+     <nav class="iniciar"> <a href="registro.html"><img src="" alt=""> Iniciar sesion</a></nav>
+     
+     <div class="search-container">
+        <button class="search-toggle" id="searchToggle">🔍</button>
+        <div class="search-box" id="searchBox">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container main-content">
+  <div class="content-wrapper">
+    <!-- Artículos principales -->
+    <section class="featured-articles">
+      <h2>Apple Vision Pro 2: Los nuevos lentes de realidad aumentada que cambiarán cómo interactuamos con la tecnología</h2>
+      
+      <div class="article-meta">
+        <span>Publicado: 28 de mayo, 2024</span> | 
+        <span>Categoría: Gadgets</span> | 
+        <span>Autor: Elena Martínez</span>
+      </div>
+      
+      <section class="foto">
+        <img src="vision.png" alt="Apple Vision Pro 2">
+
+      <p>Apple ha presentado oficialmente Vision Pro 2, la segunda generación de sus revolucionarios lentes de realidad aumentada que prometen transformar por completo la forma en que trabajamos, nos entretenemos y nos conectamos con el mundo digital. Con mejoras significativas en comodidad, rendimiento y precio, estos nuevos lentes están diseñados para el usuario masivo.</p>
+
+        <div class="release-info">
+          <div class="info-item">
+            <h4>LANZAMIENTO</h4>
+            <p>Septiembre 2024</p>
+          </div>
+          <div class="info-item">
+            <h4>PRECIO</h4>
+            <p>$2,499 USD</p>
+          </div>
+          <div class="info-item">
+            <h4>RESERVAS</h4>
+            <p>Julio 2024</p>
+          </div>
+        </div>
+
+        <p><b>Innovaciones revolucionarias</b></p>
+
+        <p>Los Vision Pro 2 presentan un diseño más ligero y ergonómico, reduciendo el peso en un 30% respecto al modelo anterior. La nueva pantalla micro-OLED ofrece una resolución de 8K por ojo con una densidad de píxeles que hace virtualmente imposible distinguir entre lo real y lo virtual. El sistema de seguimiento ocular ahora incluye detección de expresiones faciales, permitiendo avatares más realistas en videollamadas.</p>
+
+        <div class="gadget-grid">
+          <div class="gadget-card">
+            <h4>Características Principales</h4>
+            <ul>
+              <li><strong>Pantalla:</strong> Dual micro-OLED 8K</li>
+              <li><strong>Procesador:</strong> Apple R2 + M3</li>
+              <li><strong>Batería:</strong> 4 horas (8 con banco externo)</li>
+              <li><strong>Almacenamiento:</strong> 1TB/2TB</li>
+            </ul>
+          </div>
+          
+          <div class="gadget-card">
+            <h4>Nuevas Funciones</h4>
+            <ul>
+              <li><strong>Realidad Mixta:</strong> Transición fluida AR/VR</li>
+              <li><strong>Eye Tracking:</strong> Seguimiento ocular avanzado</li>
+              <li><strong>Hand Tracking:</strong> Control por gestos sin mandos</li>
+              <li><strong>Spatial Audio:</strong> Sonido 3D personalizado</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="highlight">
+          <p>"Vision Pro 2 representa el futuro de la computación espacial. Hemos rediseñado completamente la experiencia para hacerla más accesible, cómoda y poderosa. Esto no es solo un producto, es una nueva plataforma que redefinirá cómo interactuamos con la tecnología en nuestra vida diaria."</p>
+          <p><strong>- Tim Cook, CEO de Apple</strong></p>
+        </div>
+
+          <p><b>Comparativa con la competencia</b></p>
+
+          <div class="specs-comparison">
+            <div class="spec-column">
+              <h4>Apple Vision Pro 2</h4>
+              <ul class="feature-list">
+                <li>Pantallas micro-OLED 8K</li>
+                <li>Chip R2 + M3</li>
+                <li>4 horas de batería</li>
+                <li>Compatibilidad total con ecosistema Apple</li>
+                <li>15 cámaras y sensores</li>
+                <li class="price-tag">$2,499 USD</li>
+              </ul>
+            </div>
+            
+            <div class="spec-column">
+              <h4>Meta Quest 3 Pro</h4>
+              <ul class="feature-list">
+                <li>Pantallas LCD 4K</li>
+                <li>Snapdragon XR2 Gen 2</li>
+                <li>2 horas de batería</li>
+                <li>Ecosistema Meta limitado</li>
+                <li>10 cámaras y sensores</li>
+                <li class="price-tag">$1,499 USD</li>
+              </ul>
+            </div>
+          </div>
+
+          <p><b>Aplicaciones prácticas y casos de uso</b></p>
+
+          <p>Los Vision Pro 2 no son solo para entusiastas de la tecnología. Apple ha desarrollado aplicaciones específicas para diferentes industrias:</p>
+
+          <ul>
+            <li><span class="tech-badge">SALUD</span> <strong>Cirugías asistidas:</strong> Los cirujanos pueden superponer imágenes médicas en tiempo real durante operaciones</li>
+            <li><span class="tech-badge">EDUCACIÓN</span> <strong>Aulas inmersivas:</strong> Estudiantes pueden explorar el sistema solar o el cuerpo humano en 3D</li>
+            <li><span class="tech-badge">DISEÑO</span> <strong>Prototipado virtual:</strong> Diseñadores pueden crear y modificar modelos 3D en espacio real</li>
+            <li><span class="tech-badge">ENTRETENIMIENTO</span> <strong>Cine inmersivo:</strong> Películas y series en pantallas virtuales de 100 pies</li>
+            <li><span class="tech-badge">TRABAJO</span> <strong>Oficina virtual:</strong> Múltiples monitores flotantes en cualquier entorno</li>
+          </ul>
+
+          <p><b>Ecosistema y compatibilidad</b></p>
+
+          <p>Vision Pro 2 se integra perfectamente con el ecosistema Apple. Los usuarios pueden responder mensajes, recibir llamadas y acceder a todas sus apps favoritas de iOS y macOS. La nueva App Store dedicada a realidad espacial ya cuenta con más de 1,000 aplicaciones optimizadas disponibles desde el lanzamiento.</p>
+
+          <p>Además, Apple ha anunciado colaboraciones con empresas como Adobe, Microsoft y Unity para garantizar que herramientas profesionales como Photoshop, Office y motores de juego estén disponibles desde el primer día.</p>
+
+          <p><b>Disponibilidad y recepción del mercado</b></p>
+
+          <p>Las reservas para Vision Pro 2 comenzarán en julio de 2024, con envíos programados para septiembre. El precio de $2,499 USD representa una reducción significativa respecto al modelo anterior, haciendo los lentes más accesibles para profesionales y early adopters.</p>
+
+          <p>Analistas predicen que Apple podría vender hasta 3 millones de unidades en el primer año, estableciendo un nuevo estándar para el mercado de realidad aumentada. La empresa ya ha comenzado programas de demostración en tiendas Apple Store seleccionadas, donde los usuarios pueden experimentar las capacidades de los lentes antes de realizar su compra.</p>
+
+          <p>Con Vision Pro 2, Apple no solo está lanzando un producto, sino que está sentando las bases para lo que podría convertirse en el sucesor del smartphone como nuestro dispositivo de computación principal en la próxima década.</p>
+      </section>
+    </section>
+    
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Gadgets Destacados</h2>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/samsung-foldable" target="_blank">Samsung Galaxy Z Fold 6: Más delgado y resistente</a></h3>
+        <p>Nuevo diseño con bisagra imperceptible y pantalla más duradera.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/sony-headphones" target="_blank">Sony WH-1000XM6: Cancelación de ruido revolucionaria</a></h3>
+        <p>Los nuevos audífonos ofrecen 40 horas de batería y sonido 3D.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/dji-drone" target="_blank">DJI Mini 4 Pro: El dron más inteligente</a></h3>
+        <p>Nuevos sensores de obstáculos y modo follow-me mejorado.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/tesla-robot" target="_blank">Tesla Optimus: Avances en robot humanoide</a></h3>
+        <p>Ahora puede realizar tareas domésticas complejas de forma autónoma.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/apple-watch" target="_blank">Apple Watch Series 10: Monitoreo de glucosa</a></h3>
+        <p>Nuevo sensor no invasivo para medir niveles de azúcar en sangre.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Tecnonoticias</h3>
+          <p>Tu fuente confiable de noticias tecnológicas, análisis y tendencias.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <a href="#">Inicio</a>
+          <a href="#">Gadgets</a>
+          <a href="#">Tecnología</a>
+          <a href="#">Reviews</a>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <a href="#">Redacción</a>
+          <a href="#">Publicidad</a>
+          <a href="#">Trabaja con nosotros</a>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Síguenos</h3>
+          <a href="#">Twitter</a>
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2025 Tecnonoticias. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a> | <a href="/terminos">Términos de Uso</a></p>
+        <address>
+          <p>Contáctanos en: info@tecnonoticias.com</p>
+        </address>
+      </div>
+    </div>
+  </footer>
+
+   <script>
+    // Funcionalidad del menú hamburguesa
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const fullscreenMenu = document.getElementById('fullscreenMenu');
+    const closeBtn = document.getElementById('closeBtn');
+    
+    function openMenu() {
+      fullscreenMenu.classList.add('active');
+    }
+    
+    function closeMenu() {
+      fullscreenMenu.classList.remove('active');
+    }
+    
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    
+    // Cerrar menú al hacer clic en un enlace
+    const menuLinks = document.querySelectorAll('.menu-links a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    // Funcionalidad del modo oscuro
+    const themeToggle = document.getElementById('themeToggle');
+    
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        themeToggle.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeToggle.textContent = 'Modo Oscuro';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+    
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeToggle.textContent = 'Modo Claro';
+    }
+    
+    // Funcionalidad del buscador
+    const searchToggle = document.getElementById('searchToggle');
+    const searchBox = document.getElementById('searchBox');
+    
+    searchToggle.addEventListener('click', () => {
+      searchBox.classList.toggle('active');
+    });
+    
+    // Cerrar buscador al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!searchToggle.contains(e.target) && !searchBox.contains(e.target)) {
+        searchBox.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

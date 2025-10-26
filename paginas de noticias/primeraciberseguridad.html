@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecno Noticias - Ciberseguridad</title>
+  <style>
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #333;
+      --header-bg: #3a3f44;
+      --header-text: white;
+      --card-bg: white;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --button-bg: #dc3545;
+      --button-hover: #c82333;
+      --menu-bg: rgba(0, 0, 0, 0.95);
+      --footer-bg: #2c2f33;
+      --accent-color: #dc3545;
+      --security-red: #dc3545;
+      --warning-orange: #fd7e14;
+      --safe-green: #28a745;
+    }
+
+    .dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --header-bg: #2c3e50;
+      --header-text: #f0f0f0;
+      --card-bg: #2d2d2d;
+      --card-shadow: rgba(0, 0, 0, 0.3);
+      --button-bg: #e74c3c;
+      --button-hover: #c0392b;
+      --menu-bg: rgba(30, 30, 30, 0.98);
+      --footer-bg: #1a1a1a;
+      --accent-color: #e74c3c;
+      --security-red: #e74c3c;
+      --warning-orange: #f39c12;
+      --safe-green: #27ae60;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 20px;
+      background-color: var(--header-bg);
+      width: 100%;
+      border-bottom: 2px solid #e9ecef;
+      position: relative;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .main_menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      border-radius: 5px;
+    }
+
+    .site-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--header-text);
+      margin: 0;
+    }
+
+    /* Barra principal */
+    .barra_principal {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 15px;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .barra_principal a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: var(--text-color);
+      background-color: var(--card-bg);
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .barra_principal a:hover {
+      background-color: var(--button-bg);
+      color: white;
+    }
+
+    .barra_principal a.active {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    /* Contenido principal */
+    .contenido {
+      padding: 30px;
+      margin-top: 120px;
+    }
+
+    /* Estilos generales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-top: 100px;
+      margin-bottom: 40px;
+    }
+
+    /* CSS adicional para crear el layout de columnas */
+    .content-wrapper {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .featured-articles {
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    /* Estilos para artículos */
+    .featured-articles h2 {
+      font-size: 32px;
+      width: auto;
+      padding: 30px 0;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .article {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      gap: 50px;
+      box-shadow: 0 4px 6px var(--card-shadow);
+      margin-bottom: 30px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px var(--card-shadow);
+    }
+
+    .article-image {
+      height: 200px;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .article-content {
+      padding: 20px;
+    }
+
+    .article h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    .article h3 a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .article h3 a:hover {
+      color: var(--accent-color);
+    }
+
+    .read-more {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .read-more:hover {
+      background-color: #c1121f;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px var(--card-shadow);
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .sidebar-article {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      transition: transform 0.3s;
+    }
+
+    .sidebar-article:hover {
+      transform: translateX(5px);
+    }
+
+    .sidebar-article:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .sidebar-article h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-article h3 a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .sidebar-article h3 a:hover {
+      color: var(--accent-color);
+    }
+
+    .sidebar-article p {
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .copyright {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .content-wrapper {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+      }
+      
+      .barra_principal {
+        display: none;
+      }
+      
+      .featured-articles h2 {
+        font-size: 24px;
+        padding: 15px;
+      }
+      
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .protection-steps {
+        flex-direction: column;
+      }
+    }
+
+    /* CSS para buscador */
+    .boton {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      justify-content: right;
+      flex-wrap: wrap;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="text"] {
+      padding: 8px 10px;
+      border: none;
+      border-radius: 1px 0 0 1px;
+      outline: none;
+      width: 10px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    button[type="submit"] {
+      padding: 8px 15px;
+      background-color: #4cc9f0;
+      color: white;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3aa8d0;
+    }
+
+    .theme-toggle {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--button-hover);
+    }
+
+    /* Menu desplegable */
+    .hamburger-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: var(--header-bg);
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hamburger-line {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: 0.3s;
+    }
+
+    /* Menú fullscreen */
+    .fullscreen-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: var(--menu-bg);
+      z-index: 1000;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+      overflow-y: auto;
+    }
+
+    .fullscreen-menu.active {
+      left: 0;
+    }
+
+    /* Encabezado del menú */
+    .menu-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .menu-logo {
+      height: 50px;
+      width: auto;
+      border-radius: 5px;
+    }
+
+    .menu-title {
+      font-size: 28px;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Botón cerrar */
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    /* Lista de enlaces vertical */
+    .menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+      margin-bottom: 50px;
+      width: 100%;
+    }
+
+    .menu-links li {
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-links li a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      display: block;
+      padding: 10px 0;
+    }
+
+    .menu-links li a:hover {
+      color: #4cc9f0;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Buscador con lupa desplegable */
+    .search-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .search-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      padding: 5px;
+    }
+
+    .search-box {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--card-bg);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 100;
+    }
+
+    .search-box.active {
+      display: block;
+    }
+
+    .search-box input {
+      width: 200px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .search-box button {
+      margin-left: 5px;
+      padding: 8px 12px;
+      background-color: #4cc9f0;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Estilos específicos para la noticia de ciberseguridad */
+    .content-wrapper .foto{
+      position: relative;
+      margin: 30px 0;
+    }
+
+    .content-wrapper .foto img{
+      max-width: 100%;
+      display: block;
+      height: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .content-wrapper p{
+      padding: 20px 0;
+      text-align: justify;
+      font-size: 18px;
+    }
+    
+    .article-meta {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    
+    .dark-mode .article-meta {
+      color: #aaa;
+    }
+    
+    .alert-box {
+      background-color: rgba(220, 53, 69, 0.1);
+      padding: 15px;
+      border-left: 4px solid var(--security-red);
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .warning-box {
+      background-color: rgba(253, 126, 20, 0.1);
+      padding: 15px;
+      border-left: 4px solid var(--warning-orange);
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .info-box {
+      background-color: rgba(40, 167, 69, 0.1);
+      padding: 15px;
+      border-left: 4px solid var(--safe-green);
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .impact-card {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px var(--card-shadow);
+      border-top: 3px solid var(--security-red);
+    }
+    
+    .impact-card h4 {
+      color: var(--security-red);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    
+    .impact-card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .impact-card li {
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .dark-mode .impact-card li {
+      border-bottom: 1px solid #444;
+    }
+    
+    .severity-level {
+      display: flex;
+      justify-content: space-around;
+      background: linear-gradient(135deg, var(--security-red), #fd7e14);
+      color: white;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 30px 0;
+      text-align: center;
+    }
+    
+    .severity-item {
+      flex: 1;
+    }
+    
+    .severity-item h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+    
+    .severity-item p {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+    }
+    
+    .security-badge {
+      display: inline-block;
+      background-color: var(--security-red);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+    
+    .protection-steps {
+      display: flex;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .protection-column {
+      flex: 1;
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px var(--card-shadow);
+    }
+    
+    .protection-column h4 {
+      color: var(--safe-green);
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 18px;
+    }
+    
+    .step-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .step-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    
+    .dark-mode .step-list li {
+      border-bottom: 1px solid #444;
+    }
+    
+    .step-number {
+      background-color: var(--safe-green);
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .threat-level {
+      background: linear-gradient(135deg, #dc3545, #fd7e14);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Botón Hamburguesa -->
+  <button class="hamburger-btn" id="hamburgerBtn">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Menú Full Screen -->
+  <div class="fullscreen-menu" id="fullscreenMenu">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    
+    <!-- Encabezado del menú con logo y título -->
+    <div class="menu-header">
+      <img src="https://via.placeholder.com/50x50/dc3545/ffffff?text=T" alt="Logo" class="menu-logo">
+      <h1 class="menu-title">Tecnonoticias</h1>
+    </div>
+    
+    <ul class="menu-links">
+      <li><a href="/index.html" onclick="closeMenu()">Inicio</a></li>
+      <li><a href="#servicios" onclick="closeMenu()">Videojuegos</a></li>
+      <li><a href="#productos" onclick="closeMenu()">Software</a></li>
+      <li><a href="#nosotros" onclick="closeMenu()">Podcast</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Tutoriales</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Ciberseguridad</a></li>
+      <li>
+        <div class="boton">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+          <button class="theme-toggle" id="themeToggle">Modo Oscuro</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <header class="main_menu">
+    <div class="logo-container">
+      <img src="https://via.placeholder.com/40x40/dc3545/ffffff?text=T" alt="Logo" class="logo-img">
+      <h1 class="site-title">Tecnonoticias</h1>
+    </div>
+
+    <nav class="barra_principal">
+      <a href="#"><img src="" alt=""> Videojuegos</a>
+      <a href="#"><img src="" alt=""> Software y apps</a>
+      <a href="portal.2/podcast.html"><img src="" alt=""> Podcast</a>
+      <a href="#"><img src="" alt=""> Tutoriales</a>
+      <a href="portal.2/Gadgets.html"><img src="" alt=""> Gadgets</a>
+      <a href="ciberseguridad.html" class="active"><img src="" alt=""> Ciberseguridad</a>
+      <a href="#"><img src="" alt=""> Robotica</a>
+
+     <nav class="iniciar"> <a href="registro.html"><img src="" alt=""> Iniciar sesion</a></nav>
+     
+     <div class="search-container">
+        <button class="search-toggle" id="searchToggle">🔍</button>
+        <div class="search-box" id="searchBox">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container main-content">
+  <div class="content-wrapper">
+    <!-- Artículos principales -->
+    <section class="featured-articles">
+      <h2>Ataque ransomware "BlackMamba" afecta a más de 500 empresas globales: Expertos alertan sobre nueva variante de malware</h2>
+      
+      <div class="article-meta">
+        <span>Publicado: 2 de junio, 2024</span> | 
+        <span>Categoría: Ciberseguridad</span> | 
+        <span>Autor: Dr. Alejandro Torres</span>
+      </div>
+      
+      <section class="foto">
+        <img src="hacker.png" alt="Ataque Ransomware BlackMamba">
+
+      <div class="alert-box">
+        <p><strong>ALERTA DE SEGURIDAD:</strong> Las autoridades de ciberseguridad han emitido una alerta global sobre el nuevo ransomware "BlackMamba" que está afectando a organizaciones en más de 40 países.</p>
+      </div>
+
+      <p>Un sofisticado ataque de ransomware identificado como "BlackMamba" ha comprometido los sistemas de más de 500 empresas a nivel global durante las últimas 72 horas, incluyendo hospitales, instituciones financieras y proveedores de servicios críticos. La nueva variante utiliza técnicas de inteligencia artificial para evadir sistemas de detección tradicionales.</p>
+
+        <div class="severity-level">
+          <div class="severity-item">
+            <h4>NIVEL DE AMENAZA</h4>
+            <p>CRÍTICO</p>
+          </div>
+          <div class="severity-item">
+            <h4>EMPRESAS AFECTADAS</h4>
+            <p>500+</p>
+          </div>
+          <div class="severity-item">
+            <h4>RESCATE PROMEDIO</h4>
+            <p>$5M USD</p>
+          </div>
+        </div>
+
+        <p><b>Características técnicas del ataque</b></p>
+
+        <p>BlackMamba representa una evolución significativa en el panorama de ransomware. A diferencia de variantes anteriores, este malware utiliza algoritmos de machine learning para adaptar su comportamiento según el entorno infectado, haciendo que los patrones de ataque sean únicos para cada víctima y extremadamente difíciles de detectar con soluciones tradicionales.</p>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <h4>Vectores de Ataque</h4>
+            <ul>
+              <li>Phishing con IA generativa</li>
+              <li>Explotación de vulnerabilidades Zero-Day</li>
+              <li>Compromiso de cadena de suministro</li>
+              <li>Ataques a servicios en la nube</li>
+              <li>Inyección de código en actualizaciones legítimas</li>
+            </ul>
+          </div>
+          
+          <div class="impact-card">
+            <h4>Sectores Más Afectados</h4>
+            <ul>
+              <li>Salud (28% de los casos)</li>
+              <li>Servicios financieros (22%)</li>
+              <li>Infraestructura crítica (18%)</li>
+              <li>Gobierno (15%)</li>
+              <li>Educación (12%)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <p>"BlackMamba representa la convergencia de ransomware tradicional con capacidades de IA ofensiva. Estamos viendo ataques que aprenden y se adaptan en tiempo real, lo que los hace particularmente peligrosos para organizaciones con defensas estáticas."</p>
+          <p><strong>- Maria Chen, Directora de Investigación de Ciberseguridad en Kaspersky</strong></p>
+        </div>
+
+          <p><b>Impacto económico y operacional</b></p>
+
+          <p>El ataque ha causado interrupciones significativas en servicios críticos. Al menos 15 hospitales en Europa y América del Norte han tenido que recurrir a procedimientos manuales, mientras que varias instituciones financieras reportaron caídas temporales en sus sistemas de transacciones. Los cibercriminales exigen rescates que van desde $2 hasta $20 millones de dólares, dependiendo del tamaño y valor de la organización afectada.</p>
+
+          <p><b>Medidas de protección recomendadas</b></p>
+
+          <div class="protection-steps">
+            <div class="protection-column">
+              <h4>Medidas Inmediatas</h4>
+              <ul class="step-list">
+                <li>
+                  <div class="step-number">1</div>
+                  <div>Actualizar todos los sistemas y parches de seguridad</div>
+                </li>
+                <li>
+                  <div class="step-number">2</div>
+                  <div>Implementar autenticación multifactor en todos los accesos</div>
+                </li>
+                <li>
+                  <div class="step-number">3</div>
+                  <div>Realizar backups offline verificados regularmente</div>
+                </li>
+                <li>
+                  <div class="step-number">4</div>
+                  <div>Monitorear tráfico de red en busca de patrones sospechosos</div>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="protection-column">
+              <h4>Estrategias a Largo Plazo</h4>
+              <ul class="step-list">
+                <li>
+                  <div class="step-number">5</div>
+                  <div>Implementar soluciones de seguridad basadas en IA</div>
+                </li>
+                <li>
+                  <div class="step-number">6</div>
+                  <div>Capacitar empleados en reconocimiento de phishing avanzado</div>
+                </li>
+                <li>
+                  <div class="step-number">7</div>
+                  <div>Establecer planes de respuesta a incidentes probados</div>
+                </li>
+                <li>
+                  <div class="step-number">8</div>
+                  <div>Realizar auditorías de seguridad periódicas</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p><b>Respuesta global y colaboración</b></p>
+
+          <p>Las agencias de ciberseguridad de Estados Unidos (CISA), Reino Unido (NCSC) y la Unión Europea (ENISA) han establecido un grupo de trabajo conjunto para combatir la amenaza. Mientras tanto, varias empresas de seguridad han desarrollado herramientas de descifrado específicas para algunas variantes de BlackMamba, aunque los expertos advierten que la versión principal sigue siendo indescifrable.</p>
+
+          <ul>
+            <li><span class="security-badge">FBI</span> <strong>Operación "Shield Wall":</strong> Desarticulación de infraestructura de comando y control</li>
+            <li><span class="security-badge">INTERPOL</span> <strong>Alerta roja global:</strong> Coordinación para identificar a los responsables</li>
+            <li><span class="security-badge">SECTOR PRIVADO</span> <strong>Consorcio de seguridad:</strong> Compartición de indicadores de compromiso</li>
+            <li><span class="security-badge">ACADEMIA</span> <strong>Investigación colaborativa:</strong> Análisis del código y desarrollo de contramedidas</li>
+          </ul>
+
+          <div class="info-box">
+            <p><strong>RECOMENDACIÓN OFICIAL:</strong> Las organizaciones afectadas deben contactar inmediatamente a las autoridades y evitar pagar rescates, ya que esto no garantiza la recuperación de datos y financia futuros ataques. Existen herramientas de recuperación disponibles a través de los centros de respuesta a incidentes certificados.</p>
+          </div>
+
+          <p><b>Perspectivas futuras y tendencias</b></p>
+
+          <p>Los expertos predicen que BlackMamba representa solo el comienzo de una nueva era de ransomware impulsado por IA. Se espera que en los próximos meses surjan variantes aún más sofisticadas que podrían apuntar específicamente a sistemas de inteligencia artificial empresarial y infraestructura de Internet de las Cosas (IoT).</p>
+
+          <p>La comunidad de ciberseguridad está trabajando en el desarrollo de estándares internacionales para la seguridad de IA y en la creación de frameworks que permitan una defensa más proactiva contra estas amenazas emergentes. Mientras tanto, se recomienda a todas las organizaciones revisar urgentemente sus posturas de seguridad y considerar la adopción de enfoques de "confianza cero".</p>
+
+          <p class="threat-level">NIVEL DE AMENAZA ACTUAL: ALTO - SE RECOMIENDA ACCIÓN INMEDIATA</p>
+      </section>
+    </section>
+    
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Alertas de Seguridad</h2>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/zero-day-chrome" target="_blank">Google parchea vulnerabilidad crítica en Chrome</a></h3>
+        <p>Actualización de emergencia para exploit activo en la naturaleza.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/cloudflare-breach" target="_blank">Cloudflare reporta intento de acceso no autorizado</a></h3>
+        <p>Atacantes utilizaron tokens OAuth comprometidos de Okta.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/ai-security" target="_blank">Nuevo framework de seguridad para IA generativa</a></h3>
+        <p>NIST publica estándares para proteger sistemas de IA empresarial.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/crypto-wallet" target="_blank">Alerta sobre vulnerabilidad en wallets de criptomonedas</a></h3>
+        <p>Millones de direcciones podrían estar en riesgo según investigadores.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/supply-chain-attack" target="_blank">Ataque a cadena de suministro afecta software popular</a></h3>
+        <p>Múltiples paquetes npm comprometidos en campaña coordinada.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Tecnonoticias</h3>
+          <p>Tu fuente confiable de noticias tecnológicas, análisis y tendencias.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <a href="#">Inicio</a>
+          <a href="#">Ciberseguridad</a>
+          <a href="#">Tecnología</a>
+          <a href="#">Alertas</a>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Recursos</h3>
+          <a href="#">Guías de Seguridad</a>
+          <a href="#">Herramientas Gratuitas</a>
+          <a href="#">Reportar Incidente</a>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto de Emergencia</h3>
+          <a href="#">CERT Nacional</a>
+          <a href="#">Reportar Phishing</a>
+          <a href="#">Asistencia Técnica</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2025 Tecnonoticias. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a> | <a href="/terminos">Términos de Uso</a></p>
+        <address>
+          <p>Contáctanos en: seguridad@tecnonoticias.com</p>
+        </address>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Funcionalidad del menú hamburguesa
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const fullscreenMenu = document.getElementById('fullscreenMenu');
+    const closeBtn = document.getElementById('closeBtn');
+    
+    function openMenu() {
+      fullscreenMenu.classList.add('active');
+    }
+    
+    function closeMenu() {
+      fullscreenMenu.classList.remove('active');
+    }
+    
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    
+    // Cerrar menú al hacer clic en un enlace
+    const menuLinks = document.querySelectorAll('.menu-links a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    // Funcionalidad del modo oscuro
+    const themeToggle = document.getElementById('themeToggle');
+    
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        themeToggle.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeToggle.textContent = 'Modo Oscuro';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+    
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeToggle.textContent = 'Modo Claro';
+    }
+    
+    // Funcionalidad del buscador
+    const searchToggle = document.getElementById('searchToggle');
+    const searchBox = document.getElementById('searchBox');
+    
+    searchToggle.addEventListener('click', () => {
+      searchBox.classList.toggle('active');
+    });
+    
+    // Cerrar buscador al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!searchToggle.contains(e.target) && !searchBox.contains(e.target)) {
+        searchBox.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
