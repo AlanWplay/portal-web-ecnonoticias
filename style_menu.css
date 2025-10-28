@@ -836,3 +836,307 @@
             }
         }
 
+
+        /* BLOQUES DE NOTICIAS*/
+
+        /* Estilos para bloques de noticias */
+.news-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.news-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    height: 180px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #f8f9fa; /* Color de fondo mientras carga la imagen */
+}
+
+.card-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.category {
+    display: inline-block;
+    padding: 5px 12px;
+    background: #e9ecef;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+.category.tech {
+    background: #d0ebff;
+    color: #1971c2;
+}
+
+.category.entertainment {
+    background: #fff3bf;
+    color: #e67700;
+}
+
+.category.gaming {
+    background: #e6fcf5;
+    color: #0ca678;
+}
+
+.category.music {
+    background: #f3d9fa;
+    color: #9c36b5;
+}
+
+.category.news {
+    background: #ffe3e3;
+    color: #c92a2a;
+}
+
+.category.sports {
+    background: #d3f9d8;
+    color: #2b8a3e;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #212529;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.card-excerpt {
+    color: #6c757d;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #868e96;
+    border-top: 1px solid #e9ecef;
+    padding-top: 15px;
+    margin-top: auto;
+}
+
+.read-time, .date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Estilos para noticias destacadas */
+.highlight-news {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.main-news {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.main-image {
+    height: 350px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #f8f9fa;
+}
+
+.main-content {
+    padding: 25px;
+}
+
+.main-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #212529;
+    line-height: 1.3;
+}
+
+.main-excerpt {
+    font-size: 1.1rem;
+    color: #495057;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #1a2a6c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.read-more:hover {
+    background: #0d1b4d;
+}
+
+/* Estilos para barra lateral de noticias */
+.sidebar-news {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    gap: 15px;
+    transition: transform 0.2s ease;
+}
+
+.sidebar-card:hover {
+    transform: translateX(5px);
+}
+
+.sidebar-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    background-color: #f8f9fa;
+}
+
+.sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #212529;
+    line-height: 1.4;
+}
+
+.sidebar-meta {
+    font-size: 0.8rem;
+    color: #868e96;
+}
+
+/* Estilos para lista simple de noticias */
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.list-item:hover {
+    transform: translateX(5px);
+}
+
+.list-bullet {
+    width: 8px;
+    height: 8px;
+    background: #1a2a6c;
+    border-radius: 50%;
+    margin-top: 8px;
+    flex-shrink: 0;
+}
+
+.list-content {
+    flex: 1;
+}
+
+.list-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #212529;
+}
+
+.list-meta {
+    font-size: 0.8rem;
+    color: #868e96;
+    display: flex;
+    gap: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .highlight-news {
+        grid-template-columns: 1fr;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-title {
+        font-size: 1.5rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .sidebar-card {
+        flex-direction: column;
+    }
+    
+    .sidebar-image {
+        width: 100%;
+        height: 120px;
+    }
+}

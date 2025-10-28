@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecno Noticias - HarmonyOS Next</title>
+  <style>
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #333;
+      --header-bg: #3a3f44;
+      --header-text: white;
+      --card-bg: white;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --button-bg: #ff0000;
+      --button-hover: #cc0000;
+      --menu-bg: rgba(0, 0, 0, 0.95);
+      --footer-bg: #2c2f33;
+      --accent-color: #ff0000;
+      --huawei-red: #ff0000;
+      --harmony-purple: #8a2be2;
+      --innovation-blue: #1e90ff;
+    }
+
+    .dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --header-bg: #2c3e50;
+      --header-text: #f0f0f0;
+      --card-bg: #2d2d2d;
+      --card-shadow: rgba(0, 0, 0, 0.3);
+      --button-bg: #ff3333;
+      --button-hover: #ff0000;
+      --menu-bg: rgba(30, 30, 30, 0.98);
+      --footer-bg: #1a1a1a;
+      --accent-color: #ff3333;
+      --huawei-red: #ff3333;
+      --harmony-purple: #9b4dff;
+      --innovation-blue: #3399ff;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 20px;
+      background-color: var(--header-bg);
+      width: 100%;
+      border-bottom: 2px solid #e9ecef;
+      position: relative;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .main_menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      border-radius: 5px;
+    }
+
+    .site-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--header-text);
+      margin: 0;
+    }
+
+    /* Barra principal */
+    .barra_principal {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 15px;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .barra_principal a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: var(--text-color);
+      background-color: var(--card-bg);
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .barra_principal a:hover {
+      background-color: var(--button-bg);
+      color: white;
+    }
+
+    .barra_principal a.active {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    /* Contenido principal */
+    .contenido {
+      padding: 30px;
+      margin-top: 120px;
+    }
+
+    /* Estilos generales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-top: 100px;
+      margin-bottom: 40px;
+    }
+
+    /* CSS adicional para crear el layout de columnas */
+    .content-wrapper {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .featured-articles {
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    /* Estilos para artículos */
+    .featured-articles h2 {
+      font-size: 32px;
+      width: auto;
+      padding: 30px 0;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .article {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      gap: 50px;
+      box-shadow: 0 4px 6px var(--card-shadow);
+      margin-bottom: 30px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px var(--card-shadow);
+    }
+
+    .article-image {
+      height: 200px;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .article-content {
+      padding: 20px;
+    }
+
+    .article h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    .article h3 a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .article h3 a:hover {
+      color: var(--accent-color);
+    }
+
+    .read-more {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .read-more:hover {
+      background-color: #cc0000;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px var(--card-shadow);
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .sidebar-article {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      transition: transform 0.3s;
+    }
+
+    .sidebar-article:hover {
+      transform: translateX(5px);
+    }
+
+    .sidebar-article:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .sidebar-article h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-article h3 a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .sidebar-article h3 a:hover {
+      color: var(--accent-color);
+    }
+
+    .sidebar-article p {
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .copyright {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .content-wrapper {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+      }
+      
+      .barra_principal {
+        display: none;
+      }
+      
+      .featured-articles h2 {
+        font-size: 24px;
+        padding: 15px;
+      }
+      
+      .architecture-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .device-comparison {
+        flex-direction: column;
+      }
+    }
+
+    /* CSS para buscador */
+    .boton {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      justify-content: right;
+      flex-wrap: wrap;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="text"] {
+      padding: 8px 10px;
+      border: none;
+      border-radius: 1px 0 0 1px;
+      outline: none;
+      width: 10px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    button[type="submit"] {
+      padding: 8px 15px;
+      background-color: #4cc9f0;
+      color: white;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3aa8d0;
+    }
+
+    .theme-toggle {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--button-hover);
+    }
+
+    /* Menu desplegable */
+    .hamburger-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: var(--header-bg);
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hamburger-line {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: 0.3s;
+    }
+
+    /* Menú fullscreen */
+    .fullscreen-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: var(--menu-bg);
+      z-index: 1000;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+      overflow-y: auto;
+    }
+
+    .fullscreen-menu.active {
+      left: 0;
+    }
+
+    /* Encabezado del menú */
+    .menu-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .menu-logo {
+      height: 50px;
+      width: auto;
+      border-radius: 5px;
+    }
+
+    .menu-title {
+      font-size: 28px;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Botón cerrar */
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    /* Lista de enlaces vertical */
+    .menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+      margin-bottom: 50px;
+      width: 100%;
+    }
+
+    .menu-links li {
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-links li a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      display: block;
+      padding: 10px 0;
+    }
+
+    .menu-links li a:hover {
+      color: #4cc9f0;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Buscador con lupa desplegable */
+    .search-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .search-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      padding: 5px;
+    }
+
+    .search-box {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--card-bg);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 100;
+    }
+
+    .search-box.active {
+      display: block;
+    }
+
+    .search-box input {
+      width: 200px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .search-box button {
+      margin-left: 5px;
+      padding: 8px 12px;
+      background-color: #4cc9f0;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Estilos específicos para la noticia de software */
+    .content-wrapper .foto{
+      position: relative;
+      margin: 30px 0;
+    }
+
+    .content-wrapper .foto img{
+      max-width: 100%;
+      display: block;
+      height: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .content-wrapper p{
+      padding: 20px 0;
+      text-align: justify;
+      font-size: 18px;
+    }
+    
+    .article-meta {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    
+    .dark-mode .article-meta {
+      color: #aaa;
+    }
+    
+    .exclusive-box {
+      background-color: rgba(255, 0, 0, 0.1);
+      padding: 15px;
+      border-left: 4px solid var(--huawei-red);
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .tech-breakthrough {
+      background-color: rgba(138, 43, 226, 0.1);
+      padding: 15px;
+      border-left: 4px solid var(--harmony-purple);
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .architecture-card {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px var(--card-shadow);
+      border-top: 3px solid var(--huawei-red);
+    }
+    
+    .architecture-card h4 {
+      color: var(--huawei-red);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    
+    .architecture-card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .architecture-card li {
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .dark-mode .architecture-card li {
+      border-bottom: 1px solid #444;
+    }
+    
+    .launch-roadmap {
+      display: flex;
+      justify-content: space-around;
+      background: linear-gradient(135deg, var(--huawei-red), var(--harmony-purple));
+      color: white;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 30px 0;
+      text-align: center;
+    }
+    
+    .roadmap-item {
+      flex: 1;
+    }
+    
+    .roadmap-item h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+    
+    .roadmap-item p {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+    }
+    
+    .feature-badge {
+      display: inline-block;
+      background-color: var(--huawei-red);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+    
+    .innovation-badge {
+      display: inline-block;
+      background-color: var(--harmony-purple);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+    
+    .device-comparison {
+      display: flex;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .device-column {
+      flex: 1;
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px var(--card-shadow);
+    }
+    
+    .device-column h4 {
+      color: var(--huawei-red);
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 18px;
+    }
+    
+    .device-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .device-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .dark-mode .device-list li {
+      border-bottom: 1px solid #444;
+    }
+    
+    .performance-tag {
+      background: linear-gradient(135deg, var(--innovation-blue), #00ced1);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin: 10px 0;
+    }
+    
+    .ecosystem-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .ecosystem-item {
+      background-color: var(--card-bg);
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 1px solid var(--harmony-purple);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Botón Hamburguesa -->
+  <button class="hamburger-btn" id="hamburgerBtn">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Menú Full Screen -->
+  <div class="fullscreen-menu" id="fullscreenMenu">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    
+    <!-- Encabezado del menú con logo y título -->
+    <div class="menu-header">
+      <img src="https://via.placeholder.com/50x50/ff0000/ffffff?text=T" alt="Logo" class="menu-logo">
+      <h1 class="menu-title">Tecnonoticias</h1>
+    </div>
+    
+    <ul class="menu-links">
+      <li><a href="/index.html" onclick="closeMenu()">Inicio</a></li>
+      <li><a href="#servicios" onclick="closeMenu()">Videojuegos</a></li>
+      <li><a href="#productos" onclick="closeMenu()">Software</a></li>
+      <li><a href="#nosotros" onclick="closeMenu()">Podcast</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Tutoriales</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Gadgets</a></li>
+      <li>
+        <div class="boton">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+          <button class="theme-toggle" id="themeToggle">Modo Oscuro</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <header class="main_menu">
+    <div class="logo-container">
+      <img src="https://via.placeholder.com/40x40/ff0000/ffffff?text=T" alt="Logo" class="logo-img">
+      <h1 class="site-title">Tecnonoticias</h1>
+    </div>
+
+    <nav class="barra_principal">
+      <a href="#"><img src="" alt=""> Videojuegos</a>
+      <a href="#" class="active"><img src="" alt=""> Software y apps</a>
+      <a href="portal.2/podcast.html"><img src="" alt=""> Podcast</a>
+      <a href="#"><img src="" alt=""> Tutoriales</a>
+      <a href="portal.2/Gadgets.html"><img src="" alt=""> Gadgets</a>
+      <a href="ciberseguridad.html"><img src="" alt=""> Ciberseguridad</a>
+      <a href="#"><img src="" alt=""> Robotica</a>
+
+     <nav class="iniciar"> <a href="registro.html"><img src="" alt=""> Iniciar sesion</a></nav>
+     
+     <div class="search-container">
+        <button class="search-toggle" id="searchToggle">🔍</button>
+        <div class="search-box" id="searchBox">
+          <form action="/buscar" method="get">
+            <input type="text" name="q" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container main-content">
+  <div class="content-wrapper">
+    <!-- Artículos principales -->
+    <section class="featured-articles">
+      <h2>HarmonyOS Next: Huawei presenta su sistema operativo independiente que desafía a Android e iOS</h2>
+      
+      <div class="article-meta">
+        <span>Publicado: 8 de junio, 2024</span> | 
+        <span>Categoría: Software y Apps</span> | 
+        <span>Autor: Carlos Mendoza</span>
+      </div>
+      
+      <section class="foto">
+        <img src="https://via.placeholder.com/800x400/ff0000/ffffff?text=HarmonyOS+Next" alt="HarmonyOS Next de Huawei">
+
+      <div class="exclusive-box">
+        <p><strong>EXCLUSIVA:</strong> Huawei ha revelado HarmonyOS Next, un sistema operativo completamente independiente que no utiliza ni una sola línea de código de Android, marcando un hito histórico en la industria del software móvil.</p>
+      </div>
+
+      <p>En un evento histórico celebrado en Shenzhen, Huawei ha presentado oficialmente HarmonyOS Next, la versión completamente independiente de su sistema operativo que representa la culminación de cinco años de desarrollo y una inversión de más de $10 mil millones de dólares en investigación y desarrollo.</p>
+
+        <div class="launch-roadmap">
+          <div class="roadmap-item">
+            <h4>LANZAMIENTO OFICIAL</h4>
+            <p>Q1 2025</p>
+          </div>
+          <div class="roadmap-item">
+            <h4>BETA PARA DESARROLLADORES</h4>
+            <p>Sept 2024</p>
+          </div>
+          <div class="roadmap-item">
+            <h4>DISPOSITIVOS COMPATIBLES</h4>
+            <p>100M+</p>
+          </div>
+        </div>
+
+        <p><b>Arquitectura revolucionaria y características técnicas</b></p>
+
+        <p>HarmonyOS Next está construido sobre una microarquitectura completamente nueva que elimina el kernel de Linux tradicional, reemplazándolo con el "Harmony Microkernel" diseñado específicamente para dispositivos conectados. Este enfoque permite una eficiencia energética sin precedentes y latencias extremadamente bajas.</p>
+
+        <div class="architecture-grid">
+          <div class="architecture-card">
+            <h4>Núcleo del Sistema</h4>
+            <ul>
+              <li>Harmony Microkernel (nuevo diseño)</li>
+              <li>Arquitectura distribuida nativa</li>
+              <li>Tiempo real determinístico</li>
+              <li>Seguridad por diseño</li>
+              <li>Menos de 100ms de latencia</li>
+            </ul>
+          </div>
+          
+          <div class="architecture-card">
+            <h4>Rendimiento y Eficiencia</h4>
+            <ul>
+              <li>40% más eficiente que Android</li>
+              <li>60% mejor rendimiento multitarea</li>
+              <li>Arranque en 8 segundos</li>
+              <li>Gestión inteligente de memoria</li>
+              <li>Optimización AI-driven</li>
+            </ul>
+          </div>
+
+          <div class="architecture-card">
+            <h4>Desarrollo y Compatibilidad</h4>
+            <ul>
+              <li>ArkTS (nuevo lenguaje)</li>
+              <li>Compilación nativa universal</li>
+              <li>Kit de desarrollo unificado</li>
+              <li>Compatibilidad binaria con Android</li>
+              <li>Herramientas de migración automática</li>
+            </ul>
+          </div>
+
+          <div class="architecture-card">
+            <h4>Ecosistema y Conectividad</h4>
+            <ul>
+              <li>Super Device (conexión seamless)</li>
+              <li>Distributed Data Management</li>
+              <li>Hardware Resource Pool</li>
+              <li>Multi-screen Collaboration</li>
+              <li>Cross-device AI</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tech-breakthrough">
+          <p>"HarmonyOS Next no es solo otro sistema operativo móvil. Es la primera plataforma diseñada desde cero para la era de los dispositivos inteligentes conectados. Hemos eliminado las limitaciones arquitectónicas de sistemas anteriores para crear una experiencia verdaderamente seamless across todos los dispositivos."</p>
+          <p><strong>- Richard Yu, CEO de Huawei Consumer Business Group</strong></p>
+        </div>
+
+          <p><b>Compatibilidad de dispositivos y migración</b></p>
+
+          <p>HarmonyOS Next estará disponible inicialmente en más de 100 millones de dispositivos Huawei, incluyendo smartphones, tablets, wearables, dispositivos IoT y vehículos inteligentes. La compañía ha desarrollado herramientas de migración automática que permiten a los desarrolladores portar aplicaciones Android existentes en cuestión de horas.</p>
+
+          <div class="device-comparison">
+            <div class="device-column">
+              <h4>Dispositivos Iniciales</h4>
+              <ul class="device-list">
+                <li>Huawei P70 Series (lanzamiento simultáneo)</li>
+                <li>Mate 60 Series (actualización Q1 2025)</li>
+                <li>MatePad Pro 13.2"</li>
+                <li>Watch 4 Pro</li>
+                <li>Vision Smart Glass</li>
+                <li>MateStation (PC Harmony)</li>
+              </ul>
+            </div>
+            
+            <div class="device-column">
+              <h4>Características Exclusivas</h4>
+              <ul class="device-list">
+                <li>Super Storage (compresión inteligente)</li>
+                <li>AI Performance Boost</li>
+                <li>Privacy Center unificado</li>
+                <li>Cross-device Gaming</li>
+                <li>Smart Home Control Center</li>
+                <li>Enterprise Security Suite</li>
+              </ul>
+            </div>
+          </div>
+
+          <p><b>Ecosistema de aplicaciones y desarrolladores</b></p>
+
+          <p>Huawei ha anunciado que más de 5,000 aplicaciones nativas ya están en desarrollo para HarmonyOS Next, incluyendo versiones optimizadas de aplicaciones populares como TikTok, WeChat, Alipay y aplicaciones de productividad de Office. El AppGallery contará con más de 100,000 aplicaciones HarmonyOS-native para el lanzamiento oficial.</p>
+
+          <div class="ecosystem-list">
+            <div class="ecosystem-item">AppGallery</div>
+            <div class="ecosystem-item">Huawei Mobile Services</div>
+            <div class="ecosystem-item">Petalsearch</div>
+            <div class="ecosystem-item">Huawei Browser</div>
+            <div class="ecosystem-item">Huawei Assistant</div>
+            <div class="ecosystem-item">Huawei Cloud</div>
+          </div>
+
+          <p><b>Programa para desarrolladores e incentivos</b></p>
+
+          <p>Huawei ha lanzado un programa masivo de $2 mil millones de dólares para incentivar a desarrolladores a crear aplicaciones nativas para HarmonyOS Next. Los beneficios incluyen:</p>
+
+          <ul>
+            <li><span class="feature-badge">FINANCIACIÓN</span> <strong>Subsidios de desarrollo:</strong> Hasta $200,000 por aplicación de alta calidad</li>
+            <li><span class="innovation-badge">TECNOLOGÍA</span> <strong>Acceso prioritario:</strong> APIs avanzadas y herramientas de IA</li>
+            <li><span class="feature-badge">MARKETING</span> <strong>Promoción global:</strong> Featured en AppGallery a 800 millones de usuarios</li>
+            <li><span class="innovation-badge">RECURSOS</span> <strong>Soporte técnico:</strong> Equipos dedicados para desarrolladores enterprise</li>
+          </ul>
+
+          <p><b>Impacto en el mercado y competencia</b></p>
+
+          <p>Analistas consideran que HarmonyOS Next representa el desafío más significativo al duopolio Android-iOS en una década. Se proyecta que para 2026, HarmonyOS podría capturar el 8% del mercado global de sistemas operativos móviles, convirtiéndose en la tercera plataforma más importante a nivel mundial.</p>
+
+          <p class="performance-tag">RENDIMIENTO VERIFICADO: 2.3X MÁS RÁPIDO QUE ANDROID EN TAREAS MULTITAREA</p>
+
+          <p><b>Privacidad y seguridad mejoradas</b></p>
+
+          <p>HarmonyOS Next introduce un sistema de seguridad revolucionario llamado "TEE+" (Trusted Execution Environment Plus) que proporciona aislamiento hardware-level para datos sensibles. Todas las comunicaciones entre dispositivos utilizan encriptación end-to-end, y el sistema incluye verificación de integridad en tiempo real.</p>
+
+          <p>El lanzamiento de HarmonyOS Next marca un punto de inflexión en la industria tecnológica, demostrando que es posible crear un ecosistema de software competitivo y completamente independiente. Con su arquitectura innovadora, herramientas de desarrollo avanzadas y masivo apoyo a desarrolladores, Huawei está posicionado para cambiar el landscape de los sistemas operativos móviles para siempre.</p>
+
+          <p>La beta para desarrolladores estará disponible en septiembre de 2024, con el lanzamiento comercial masivo programado para el primer trimestre de 2025. Los usuarios de dispositivos Huawei existentes podrán actualizar a HarmonyOS Next mediante un proceso de migración sencillo que preservará todos sus datos y configuraciones.</p>
+      </section>
+    </section>
+    
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Software Destacado</h2>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/android-15" target="_blank">Android 15 Beta revela nuevas funciones de privacidad</a></h3>
+        <p>Nuevo sistema de permisos granulares y dashboard de seguridad mejorado.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/windows-12" target="_blank">Windows 12 llegará en 2024 con interfaz modular</a></h3>
+        <p>Microsoft trabaja en un diseño completamente nuevo centrado en productividad.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/adobe-firefly" target="_blank">Adobe Firefly ahora nativo en Creative Suite</a></h3>
+        <p>Integración completa de IA generativa en todas las aplicaciones Adobe.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/slack-ai" target="_blank">Slack AI revoluciona la productividad empresarial</a></h3>
+        <p>Nuevas funciones de resumen automático y búsqueda conversacional.</p>
+      </div>
+      
+      <div class="sidebar-article">
+        <h3><a href="https://example.com/linux-gaming" target="_blank">SteamOS 3.0 llegará a PCs de escritorio</a></h3>
+        <p>Valve expande su sistema operativo gaming más allá de Steam Deck.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Tecnonoticias</h3>
+          <p>Tu fuente confiable de noticias tecnológicas, análisis y tendencias.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <a href="#">Inicio</a>
+          <a href="#">Software</a>
+          <a href="#">Apps</a>
+          <a href="#">Sistemas Operativos</a>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Desarrolladores</h3>
+          <a href="#">SDK HarmonyOS</a>
+          <a href="#">Documentación</a>
+          <a href="#">Foros</a>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Recursos</h3>
+          <a href="#">Comparativas</a>
+          <a href="#">Benchmarks</a>
+          <a href="#">Guías de Migración</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2025 Tecnonoticias. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a> | <a href="/terminos">Términos de Uso</a></p>
+        <address>
+          <p>Contáctanos en: developers@tecnonoticias.com</p>
+        </address>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Funcionalidad del menú hamburguesa
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const fullscreenMenu = document.getElementById('fullscreenMenu');
+    const closeBtn = document.getElementById('closeBtn');
+    
+    function openMenu() {
+      fullscreenMenu.classList.add('active');
+    }
+    
+    function closeMenu() {
+      fullscreenMenu.classList.remove('active');
+    }
+    
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    
+    // Cerrar menú al hacer clic en un enlace
+    const menuLinks = document.querySelectorAll('.menu-links a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    // Funcionalidad del modo oscuro
+    const themeToggle = document.getElementById('themeToggle');
+    
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        themeToggle.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeToggle.textContent = 'Modo Oscuro';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+    
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeToggle.textContent = 'Modo Claro';
+    }
+    
+    // Funcionalidad del buscador
+    const searchToggle = document.getElementById('searchToggle');
+    const searchBox = document.getElementById('searchBox');
+    
+    searchToggle.addEventListener('click', () => {
+      searchBox.classList.toggle('active');
+    });
+    
+    // Cerrar buscador al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!searchToggle.contains(e.target) && !searchBox.contains(e.target)) {
+        searchBox.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

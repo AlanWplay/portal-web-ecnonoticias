@@ -190,3 +190,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             const carrusel = new Carrusel(document.querySelector('.carrusel'));
         });
+
+
+
+        // bloque de noticias
+
+      
