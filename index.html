@@ -6,361 +6,386 @@
   <title>Tecno Noticias</title>
   <link rel="stylesheet" href="style_menu.css" />
 </head>
-
-  <!-- Botón Hamburguesa -->
-  <button class="hamburger-btn" id="hamburgerBtn">
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-  </button>
-
-  <!-- Menú Full Screen -->
-  <div class="fullscreen-menu" id="fullscreenMenu">
-    <button class="close-btn" id="closeBtn">&times;</button>
-        
-    <!-- Encabezado del menú con logo y título -->
-    <div class="menu-header">
-      <img src="logo.png" alt="Logo" class="menu-logo">
-      <h1 class="menu-title">Tecnonoticias</h1>
-    </div>
-    
-    <ul class="menu-links">
-      <li><a href="#inicio" onclick="closeMenu()">Inicio</a></li>
-      <li><a href="#servicios" onclick="closeMenu()">Videojuegos</a></li>
-      <li><a href="#productos" onclick="closeMenu()">Software</a></li>
-      <li><a href="#nosotros" onclick="closeMenu()">Podcast</a></li>
-      <li><a href="#contacto" onclick="closeMenu()">Gadgets</a></li>
-      
-      <li>
-        <div class="boton">
-          <form action="/buscar" method="get">
-            <input type="text" name="q" placeholder="Buscar...">
-            <button type="submit">Buscar</button>
-          </form>
-          <button class="theme-toggle" id="themeToggle">Modo Oscuro</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-
+<body>
+  <!-- Header Principal -->
   <header class="main_menu">
-    <div class="logo-container">
-      <img src="https://via.placeholder.com/40x40/4a6fa5/ffffff?text=T" alt="Logo" class="logo-img">
-      <h1 class="site-title">Tecnonoticias</h1>
-    </div>
-
-    <nav class="barra_principal">
-      <a href="#"><img src="" alt=""> Videojuegos</a>
-      <a href="#"><img src="" alt=""> Software y apps</a>
-      <a href="portal.2/podcast.html"><img src="" alt=""> Podcast</a>
-      <a href="portal (2) nueva/portal/ciberseguridad.html"><img src="" alt=""> Tutoriales</a>
-      <a href="portal.2/Gadgets.html"><img src="" alt=""> Gadgets</a>
-      <a href="/ciberseguridad.html"><img src="" alt=""> Ciberseguridad</a>
-      <a href="#"><img src="" alt=""> Robotica</a>
-
-     <nav class="iniciar"> <a href="registro.html"><img src="" alt=""> Iniciar sesion</a></nav>
-     
-     <div class="search-container">
-        <button class="search-toggle" id="searchToggle">🔍</button>
-        <div class="search-box" id="searchBox">
-          <form action="/buscar" method="get">
-            <input type="text" name="q" placeholder="Buscar...">
-            <button type="submit">Buscar</button>
-        </div>
+    <div class="header-container">
+      <!-- Logo y título -->
+      <div class="logo-container">
+        <img src="https://via.placeholder.com/40x40/4a6fa5/ffffff?text=T" alt="Logo" class="logo-img">
+        <h1 class="site-title">Tecnonoticias</h1>
       </div>
-    </nav>
+
+      <!-- Navegación Desktop -->
+      <nav class="desktop-nav">
+        <div class="nav-links">
+          <a href="#"><span>🎮</span> Videojuegos</a>
+          <a href="#"><span>💻</span> Software</a>
+          <a href="portal.2/podcast.html"><span>🎙️</span> Podcast</a>
+          <a href="#"><span>📚</span> Tutoriales</a>
+          <a href="portal.2/Gadgets.html"><span>📱</span> Gadgets</a>
+          <a href="/ciberseguridad.html"><span>🔒</span> Ciberseguridad</a>
+          <a href="#"><span>🤖</span> Robotica</a>
+        </div>
+        
+        <div class="nav-actions">
+          <a href="registro.html" class="login-btn"><span>👤</span> Iniciar sesión</a>
+          
+          <div class="search-container">
+            <button class="search-toggle" id="searchToggle">🔍</button>
+            <div class="search-box" id="searchBox">
+              <form action="/buscar" method="get">
+                <input type="text" name="q" placeholder="Buscar noticias...">
+                <button type="submit">Buscar</button>
+              </form>
+            </div>
+          </div>
+          
+          <button class="theme-toggle" id="themeToggle">🌙 Modo Oscuro</button>
+        </div>
+      </nav>
+
+      <!-- Botón Hamburguesa para Mobile -->
+      <button class="hamburger-btn" id="hamburgerBtn">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
   </header>
 
+  <!-- Menú Mobile Full Screen -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <div class="mobile-logo">
+        <img src="https://via.placeholder.com/50x50/4a6fa5/ffffff?text=T" alt="Logo">
+        <h2>Tecnonoticias</h2>
+      </div>
+      <button class="close-menu-btn" id="closeMenuBtn">&times;</button>
+    </div>
+
+    <nav class="mobile-nav">
+      <div class="mobile-nav-section">
+        <h3>Categorías</h3>
+        <a href="#"><span>🎮</span> Videojuegos</a>
+        <a href="#"><span>💻</span> Software y Apps</a>
+        <a href="portal.2/podcast.html"><span>🎙️</span> Podcast</a>
+        <a href="#"><span>📚</span> Tutoriales</a>
+        <a href="portal.2/Gadgets.html"><span>📱</span> Gadgets</a>
+        <a href="/ciberseguridad.html"><span>🔒</span> Ciberseguridad</a>
+        <a href="#"><span>🤖</span> Robotica</a>
+      </div>
+
+      <div class="mobile-nav-section">
+        <h3>Cuenta</h3>
+        <a href="registro.html"><span>👤</span> Iniciar sesión</a>
+        <a href="#"><span>⭐</span> Favoritos</a>
+        <a href="#"><span>⚙️</span> Configuración</a>
+      </div>
+
+      <div class="mobile-search">
+        <form action="/buscar" method="get">
+          <input type="text" name="q" placeholder="🔍 Buscar noticias...">
+          <button type="submit">Buscar</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="mobile-menu-footer">
+      <button class="mobile-theme-toggle" id="mobileThemeToggle">
+        <span>🌙</span> Cambiar a modo claro
+      </button>
+    </div>
+  </div>
+
   <!-- Main Content -->
-  <div class="container main-content">
-    <!-- Artículos principales -->
-    <section class="featured-articles">
-      <h2>Noticias Destacadas</h2>
+  <main class="main-content">
+    <div class="container">
+      <!-- Artículos principales -->
+      <section class="featured-articles">
+        <h2 class="section-title">📰 Noticias Destacadas</h2>
+        
+        <article class="article">
+          <div class="article-image" style="background-image: url(nvidiatrans.png)"></div>
+          <div class="article-content">
+            <span class="article-category">Tecnología</span>
+            <h3><a href="index 2.html" target="_blank">Microsoft traslada producción fuera de China ante tensiones comerciales con EE. UU.</a></h3>
+            <p>Microsoft Corp (NASDAQ:MSFT) planea trasladar la mayor parte de la fabricación de sus nuevos productos fuera de China a partir del próximo año...</p>
+            <div class="article-meta">
+              <span class="article-date">📅 15 Dic 2024</span>
+              <span class="article-time">⏱️ 3 min lectura</span>
+            </div>
+            <a href="index 2.html" target="_blank" class="read-more">Leer más →</a>
+          </div>
+        </article>
+        
+        <article class="article">
+          <div class="article-image" style="background-image: url('ipad.jpg')"></div>
+          <div class="article-content">
+            <span class="article-category">Apple</span>
+            <h3><a href="pagina_3.html" target="_blank">Apple presenta el nuevo y potente iPad Pro con el chip M5</a></h3>
+            <p>El nuevo iPad Pro incorpora el chip de última generación de Apple, y ofrece un gran avance en rendimiento de la IA, almacenamiento más rápido...</p>
+            <div class="article-meta">
+              <span class="article-date">📅 14 Dic 2024</span>
+              <span class="article-time">⏱️ 4 min lectura</span>
+            </div>
+            <a href="pagina_3.html" target="_blank" class="read-more">Leer más →</a>
+          </div>
+        </article>
+        
+        <article class="article">
+          <div class="article-image" style="background-image: url('perro_policia.png')"></div>
+          <div class="article-content">
+            <span class="article-category">Robótica</span>
+            <h3><a href="pagina_zacateca.html" target="_blank">Un perro robot con fusil de asalto, el aliado en seguridad que se plantea tener el Gobierno de Zacatecas</a></h3>
+            <p>El secretario de Seguridad Pública estatal estudia incorporar al robot Unitree B2, que puede neutralizar enemigos y rescatar personas...</p>
+            <div class="article-meta">
+              <span class="article-date">📅 13 Dic 2024</span>
+              <span class="article-time">⏱️ 5 min lectura</span>
+            </div>
+            <a href="paginas de noticias/pagina_zacateca.html" target="_blank" class="read-more">Leer más →</a>
+          </div>
+        </article>
+      </section>
       
-      <article class="article">
-        <div class="article-image" style="background-image: url(nvidiatrans.png)"></div>
-        <div class="article-content">
-          <h3><a href="index 2.html" target="_blank">Microsoft traslada producción fuera de China ante tensiones comerciales con EE. UU.</a></h3>
-          <p><a href="index 2.html" target="_blank">
-            Microsoft Corp (NASDAQ:MSFT) planea trasladar la mayor parte de la fabricación 
-            de sus nuevos productos fuera de China a partir del próximo año, uniéndose así a otros 
-            gigantes tecnológicos estadounidenses que están expandiendo su producción más allá de la segunda economía más grande del mundo, según un informe publicado el jueves.</a></p>
-          <a href="index 2.html" target="_blank" class="read-more">Leer más</a>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h2 class="sidebar-title">📢 Noticias Recientes</h2>
+        
+        <div class="sidebar-article">
+          <span class="sidebar-category">IA</span>
+          <h3><a href="paginas de noticias/pagina_chat.html" target="_blank">OpenAI presenta GPT-4o: su nuevo modelo multimodal</a></h3>
+          <p>La Inteligencia Artificial avanza a pasos agigantados con este nuevo modelo que procesa texto, audio e imágenes en tiempo real.</p>
+          <span class="sidebar-meta">Hace 2 horas</span>
         </div>
-      </article>
-      
-      <article class="article">
-        <div class="article-image" style="background-image: url('ipad.jpg')"></div>
-        <div class="article-content">
-          <h3><a href="pagina_3.html" target="_blank">Apple presenta el nuevo y potente iPad Pro con 
-            el chip M5</a></h3>
-          <p><a href="pagina_3.html" target="_blank">El nuevo iPad Pro incorpora el chip de última 
-            generación de Apple, y ofrece un gran avance en rendimiento de la IA, almacenamiento 
-            más rápido y las revolucionarias capacidades de iPadOS 26</a></p>
-          <a href="pagina_3.html" target="_blank" class="read-more">Leer más</a>
+        
+        <div class="sidebar-article">
+          <span class="sidebar-category">Gaming</span>
+          <h3><a href="paginas de noticias/pagina de gta 6.html" target="_blank">GTA VI: Rockstar confirma fecha de lanzamiento para otoño de 2025</a></h3>
+          <p>Take-Two Interactive ha confirmado oficialmente que Grand Theft Auto VI será lanzado en otoño de 2025.</p>
+          <span class="sidebar-meta">Hace 5 horas</span>
         </div>
-      </article>
-      
-      <article class="article">
-        <div class="article-image" style="background-image: url('perro_policia.png')"></div>
-        <div class="article-content">
-          <h3><a href="pagina_zacateca.html" target="_blank">Un perro robot con fusil de asalto, el aliado en seguridad que se plantea tener el Gobierno de Zacatecas </a></h3>
-          <p><a href="pagina_zacateca.html" target="_blank">El secretario de Seguridad Pública estatal estudia incorporar al robot Unitree B2, que puede neutralizar enemigos y rescatar personas, y presenta un nuevo centro de inteligencia</a></p>
-          <a href="paginas de noticias/pagina_zacateca.html" target="_blank" class="read-more">Leer más</a>
+        
+        <div class="sidebar-article">
+          <span class="sidebar-category">Gadgets</span>
+          <h3><a href="paginas de noticias/gadgest.html" target="_blank">Apple Vision Pro 2: Los nuevos lentes de realidad aumentada</a></h3>
+          <p>Apple presenta la segunda generación de sus revolucionarios lentes de realidad aumentada.</p>
+          <span class="sidebar-meta">Hace 1 día</span>
         </div>
-      </article>
-    </section>
-    
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <h2>Noticias Recientes</h2>
-      
-      
-      <div class="sidebar-article">
-        <h3><a href="paginas de noticias/pagina_chat.html" target="_blank">OpenAI presenta GPT-4o: 
-          su nuevo modelo multimodal que puede procesar texto, audio e imágenes en tiempo real</a></h3>
-        <p><a href="paginas de noticias/pagina_chat.html" target="_blank">La Inteligencia Artificial avanza a pasos agigantados</a></p>
-      </div>
-      
-      <div class="sidebar-article">
-        <h3><a href="paginas de noticias/pagina de gta 6.html" target="_blank">GTA VI: Rockstar confirma fecha de lanzamiento para otoño de 2025</a></h3>
-        <p><a href="paginas de noticias/pagina de gta 6.html" target="_blank">Take-Two Interactive, la empresa matriz de Rockstar Games, ha confirmado oficialmente durante su conferencia de inversores que Grand Theft Auto VI será lanzado en otoño de 2025.</a></p>
-      </div>
-      
-      <div class="sidebar-article">
-        <h3><a href="paginas de noticias/gadgest.html" target="_blank">Apple Vision Pro 2: Los nuevos lentes de realidad aumentada que cambiarán cómo interactuamos con la tecnología</a></h3>
-        <p><a href="https://example.com/google-algorithm-impact" target="_blank">Apple ha presentado oficialmente Vision Pro 2, la segunda generación de sus revolucionarios lentes de realidad aumentada que prometen transformar por completo la forma en que trabajamos, nos entretenemos y nos conectamos con el mundo digital</a></p>
-      </div>
-      
-      <div class="sidebar-article">
-        <h3><a href="paginas de noticias/primeraciberseguridad.html" target="_blank">Ataque ransomware "BlackMamba" afecta a más de 500 empresas globales: Expertos alertan sobre nueva variante de malware</a></h3>
-        <p><a href="paginas de noticias/primeraciberseguridad.html" target="_blank">Un sofisticado ataque de ransomware identificado como "BlackMamba" ha comprometido los sistemas de más de 500 empresas a nivel global durante las últimas 72 horas, incluyendo hospitales, instituciones financieras y proveedores de servicios críticos.</a></p>
-      </div>
+        
+        <div class="sidebar-article">
+          <span class="sidebar-category">Seguridad</span>
+          <h3><a href="paginas de noticias/primeraciberseguridad.html" target="_blank">Ataque ransomware "BlackMamba" afecta a más de 500 empresas</a></h3>
+          <p>Un sofisticado ataque de ransomware ha comprometido sistemas a nivel global durante las últimas 72 horas.</p>
+          <span class="sidebar-meta">Hace 1 día</span>
+        </div>
 
-            <div class="sidebar-article">
-        <h3><a href="paginas de noticias/microsoft.html" target="_blank">Microsoft Office 2024: La suite ofimática se reinventa con IA nativa y colaboración en tiempo real</a></h3>
-        <p><a href="paginas de noticias/microsoft.html" target="_blank">La nueva versión de su suite ofimática que representa la mayor actualización en una década. La integración nativa de inteligencia artificial en Word, Excel, PowerPoint y Outlook promete revolucionar la productividad empresarial y personal.</a></p>
-      </div>
-    </aside>
-  </div>
+        <div class="sidebar-article">
+          <span class="sidebar-category">Software</span>
+          <h3><a href="paginas de noticias/microsoft.html" target="_blank">Microsoft Office 2024: La suite ofimática se reinventa con IA</a></h3>
+          <p>La nueva versión representa la mayor actualización en una década con integración nativa de inteligencia artificial.</p>
+          <span class="sidebar-meta">Hace 2 días</span>
+        </div>
+      </aside>
+    </div>
+  </main>
 
-    </aside>
-  </div>
-
-  <!-- carrusel -->
-   <div class="carrusel">
-        <div class="carrusel-contenedor">
+  <!-- Carrusel de Noticias -->
+  <section class="news-carousel-section">
+    <div class="container">
+      <h2 class="section-title">🚀 Noticias Populares</h2>
+      <div class="carrusel-container">
+        <div class="carrusel">
+          <div class="carrusel-contenedor">
             <!-- Slide 1 -->
             <div class="carrusel-slide">
-                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Playa tropical">
-                <div class="slide-content">
-                    <h2>Paraíso Tropical</h2>
-                    <p>Sumérgete en aguas cristalinas y disfruta de playas de arena blanca en este destino único. Perfecto para relajarse y desconectar del mundo.</p>
-                    <a href="#" class="slide-link">Descubre más</a>
-                </div>
+              <img src="paginas de noticias/metra.png" alt="Meta Horizon Pro">
+              <div class="slide-content">
+                <span class="slide-category">Realidad Virtual</span>
+                <h2>Meta Horizon Pro: Los primeros lentes de realidad mixta con pantallas retinales</h2>
+                <p>Meta ha presentado los Horizon Pro, los primeros lentes de realidad mixta que utilizan tecnología de pantalla retinal directa y permiten control mediante señales neuronales.</p>
+                <a href="paginas de noticias/meta_horizon.html" class="slide-link">Leer más →</a>
+              </div>
             </div>
             
             <!-- Slide 2 -->
             <div class="carrusel-slide">
-                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Montañas">
-                <div class="slide-content">
-                    <h2>Aventura en la Montaña</h2>
-                    <p>Explora paisajes impresionantes y practica senderismo en rutas desafiantes. Una experiencia inolvidable para los amantes de la naturaleza.</p>
-                    <a href="#" class="slide-link">Ver rutas</a>
-                </div>
+              <img src="paginas de noticias/geminis.png" alt="Google Gemini">
+              <div class="slide-content">
+                <span class="slide-category">Inteligencia Artificial</span>
+                <h2>Google presenta Gemini 2.0: la nueva generación de IA que supera a GPT-4</h2>
+                <p>Google ha anunciado hoy el lanzamiento de Gemini 2.0, su modelo de inteligencia artificial más avanzado hasta la fecha.</p>
+                <a href="paginas de noticias/gemini.html" class="slide-link">Leer más →</a>
+              </div>
             </div>
             
             <!-- Slide 3 -->
             <div class="carrusel-slide">
-                <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ciudad">
-                <div class="slide-content">
-                    <h2>Metrópolis Vibrante</h2>
-                    <p>Descubre la energía de una ciudad que nunca duerme. Cultura, gastronomía y entretenimiento se fusionan en este destino urbano.</p>
-                    <a href="#" class="slide-link">Explora la ciudad</a>
-                </div>
+              <img src="paginas de noticias/galaxy.png" alt="Samsung Galaxy">
+              <div class="slide-content">
+                <span class="slide-category">Móviles</span>
+                <h2>Samsung Galaxy Z Fold 6: El dispositivo plegable definitivo</h2>
+                <p>Samsung ha presentado oficialmente su nuevo buque insignia plegable, el Galaxy Z Fold 6, que promete revolucionar la productividad móvil.</p>
+                <a href="paginas de noticias/galaxy.html" class="slide-link">Leer más →</a>
+              </div>
             </div>
             
             <!-- Slide 4 -->
             <div class="carrusel-slide">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Naturaleza">
-                <div class="slide-content">
-                    <h2>Paisajes Serenos</h2>
-                    <p>Encuentra paz y tranquilidad en medio de la naturaleza. Un refugio perfecto para recargar energías y conectar con el entorno.</p>
-                    <a href="#" class="slide-link">Reserva tu estancia</a>
-                </div>
+              <img src="paginas de noticias/officeIA.png" alt="Microsoft Office">
+              <div class="slide-content">
+                <span class="slide-category">Software</span>
+                <h2>Microsoft Office 2024: La suite ofimática se reinventa con IA nativa</h2>
+                <p>Office 2024 introduce más de 50 nuevas funciones impulsadas por IA, incluyendo redacción automática y análisis de datos inteligente.</p>
+                <a href="paginas de noticias/microsoft.html" class="slide-link">Leer más →</a>
+              </div>
             </div>
-        </div>
-        
-        <button class="carrusel-btn carrusel-prev">&#10094;</button>
-        <button class="carrusel-btn carrusel-next">&#10095;</button>
-        
-        <div class="carrusel-indicadores">
+          </div>
+          
+          <button class="carrusel-btn carrusel-prev">‹</button>
+          <button class="carrusel-btn carrusel-next">›</button>
+          
+          <div class="carrusel-indicadores">
             <button class="indicador activo"></button>
             <button class="indicador"></button>
             <button class="indicador"></button>
             <button class="indicador"></button>
+          </div>
         </div>
+
+        <div class="carousel-controls">
+          <button class="toggle-btn" id="toggleAutoPlay">⏸️ Pausar</button>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="auto-play-control">
-        <span>Auto-reproducción:</span>
-        <button class="toggle-btn" id="toggleAutoPlay">Pausar</button>
+  <!-- Grid de Noticias -->
+  <section class="news-grid-section">
+    <div class="container">
+      <h2 class="section-title">📊 Más Noticias</h2>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1489599809505-7c8e45128def?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+          <div class="card-content">
+            <span class="category entertainment">🎬 Entretenimiento</span>
+            <h3 class="card-title">Sandra Bullock y Nicole Kidman, de nuevo juntas en "Practical Magic 2"</h3>
+            <p class="card-excerpt">Las actrices vuelven a compartir pantalla después de más de dos décadas en la secuela del clásico de los 90.</p>
+            <div class="card-meta">
+              <span class="read-time">⏱️ 4 min</span>
+              <span class="date">📅 15 Jun 2025</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="news-card">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+          <div class="card-content">
+            <span class="category gaming">🎮 Videojuegos</span>
+            <h3 class="card-title">Rockstar Games lanza el segundo tráiler de Grand Theft Auto VI</h3>
+            <p class="card-excerpt">Vice City renace en el esperado tráiler que muestra el mundo abierto y los personajes del próximo GTA.</p>
+            <div class="card-meta">
+              <span class="read-time">⏱️ 3 min</span>
+              <span class="date">📅 14 Jun 2025</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="news-card">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+          <div class="card-content">
+            <span class="category music">🎵 Música</span>
+            <h3 class="card-title">Mal fin de semana para The Weeknd</h3>
+            <p class="card-excerpt">El cantante enfrenta críticas tras su última presentación en vivo y anuncia pausa en su gira.</p>
+            <div class="card-meta">
+              <span class="read-time">⏱️ 2 min</span>
+              <span class="date">📅 13 Jun 2025</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="news-card">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+          <div class="card-content">
+            <span class="category gaming">🎮 Videojuegos</span>
+            <h3 class="card-title">Lugares de Florida que inspiraron "GTA 6"</h3>
+            <p class="card-excerpt">Un análisis detallado de los sitios reales que parecen haber servido de inspiración para el mundo de Vice City.</p>
+            <div class="card-meta">
+              <span class="read-time">⏱️ 5 min</span>
+              <span class="date">📅 12 Jun 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-
-
-    <!--cuadros de noticias-->
-     <section class="news-grid">
-            <div class="news-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="card-content">
-                    <span class="category entertainment">Entretenimiento</span>
-                    <h3 class="card-title">Sandra Bullock y Nicole Kidman, de nuevo juntas en "Practical Magic 2"</h3>
-                    <p class="card-excerpt">Las actrices vuelven a compartir pantalla después de más de dos décadas en la secuela del clásico de los 90.</p>
-                    <div class="card-meta">
-                        <span class="read-time"><i class="far fa-clock"></i> 1:54 min</span>
-                        <span class="date"><i class="far fa-calendar"></i> 15 Jun 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="card-content">
-                    <span class="category gaming">Videojuegos</span>
-                    <h3 class="card-title">Rockstar Games lanza el segundo tráiler de Grand Theft Auto VI</h3>
-                    <p class="card-excerpt">Vice City renace en el esperado tráiler que muestra el mundo abierto y los personajes del próximo GTA.</p>
-                    <div class="card-meta">
-                        <span class="read-time"><i class="far fa-clock"></i> 1:54 min</span>
-                        <span class="date"><i class="far fa-calendar"></i> 14 Jun 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="card-content">
-                    <span class="category music">Música</span>
-                    <h3 class="card-title">Mal fin de semana para The Weeknd</h3>
-                    <p class="card-excerpt">El cantante enfrenta críticas tras su última presentación en vivo y anuncia pausa en su gira.</p>
-                    <div class="card-meta">
-                        <span class="read-time"><i class="far fa-clock"></i> 1:40 min</span>
-                        <span class="date"><i class="far fa-calendar"></i> 13 Jun 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="card-content">
-                    <span class="category gaming">Videojuegos</span>
-                    <h3 class="card-title">Lugares de Florida que inspiraron "GTA 6"</h3>
-                    <p class="card-excerpt">Un análisis detallado de los sitios reales que parecen haber servido de inspiración para el mundo de Vice City.</p>
-                    <div class="card-meta">
-                        <span class="read-time"><i class="far fa-clock"></i> 1:50 min</span>
-                        <span class="date"><i class="far fa-calendar"></i> 12 Jun 2025</span>
-                    </div>
-                </div>
-            </div>
-
-                        <div class="news-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="card-content">
-                    <span class="category entertainment">Entretenimiento</span>
-                    <h3 class="card-title">Sandra Bullock y Nicole Kidman, de nuevo juntas en "Practical Magic 2"</h3>
-                    <p class="card-excerpt">Las actrices vuelven a compartir pantalla después de más de dos décadas en la secuela del clásico de los 90.</p>
-                    <div class="card-meta">
-                        <span class="read-time"><i class="far fa-clock"></i> 1:54 min</span>
-                        <span class="date"><i class="far fa-calendar"></i> 15 Jun 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="card-content">
-                    <span class="category gaming">Videojuegos</span>
-                    <h3 class="card-title">Rockstar Games lanza el segundo tráiler de Grand Theft Auto VI</h3>
-                    <p class="card-excerpt">Vice City renace en el esperado tráiler que muestra el mundo abierto y los personajes del próximo GTA.</p>
-                    <div class="card-meta">
-                        <span class="read-time"><i class="far fa-clock"></i> 1:54 min</span>
-                        <span class="date"><i class="far fa-calendar"></i> 14 Jun 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="card-content">
-                    <span class="category music">Música</span>
-                    <h3 class="card-title">Mal fin de semana para The Weeknd</h3>
-                    <p class="card-excerpt">El cantante enfrenta críticas tras su última presentación en vivo y anuncia pausa en su gira.</p>
-                    <div class="card-meta">
-                        <span class="read-time"><i class="far fa-clock"></i> 1:40 min</span>
-                        <span class="date"><i class="far fa-calendar"></i> 13 Jun 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="card-content">
-                    <span class="category gaming">Videojuegos</span>
-                    <h3 class="card-title">Lugares de Florida que inspiraron "GTA 6"</h3>
-                    <p class="card-excerpt">Un análisis detallado de los sitios reales que parecen haber servido de inspiración para el mundo de Vice City.</p>
-                    <div class="card-meta">
-                        <span class="read-time"><i class="far fa-clock"></i> 1:50 min</span>
-                        <span class="date"><i class="far fa-calendar"></i> 12 Jun 2025</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-  
+  </section>
 
   <!-- Podcast Section -->
   <section class="podcast-section">
     <div class="container">
-      <h2>Tecnonoticas Podcast</h2>
-      <p><a href="https://example.com/tech-podcast" target="_blank">Podcast diseñado para mantenerle informado sobre las últimas tendencias tecnológicas</a></p>
-      <a href="portal.2/podcast.html" target="_blank" class="podcast-button">Escuchar ahora</a>
+      <h2>🎙️ Tecnonoticias Podcast</h2>
+      <p>Escucha nuestro podcast diseñado para mantenerte informado sobre las últimas tendencias tecnológicas</p>
+      <a href="portal.2/podcast.html" target="_blank" class="podcast-button">🎧 Escuchar ahora</a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="main-footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>Tecnonoticas</h3>
-          <p>Tu fuente confiable de noticias tecnológicas, análisis y tendencias.</p>
+          <h3>📰 Tecnonoticias</h3>
+          <p>Tu fuente confiable de noticias tecnológicas, análisis y tendencias del mundo digital.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="YouTube">📺</a>
+          </div>
         </div>
         
         <div class="footer-section">
-          <h3>Enlaces Rápidos</h3>
-          <a href="#">Inicio</a>
-          <a href="#">Tecnología</a>
-          <a href="#">Gaming</a>
-          <a href="#">Dispositivos</a>
+          <h3>🔗 Enlaces Rápidos</h3>
+          <a href="#">🏠 Inicio</a>
+          <a href="#">💻 Tecnología</a>
+          <a href="#">🎮 Gaming</a>
+          <a href="#">📱 Dispositivos</a>
+          <a href="#">🤖 IA</a>
+          <a href="#">🔒 Seguridad</a>
         </div>
         
         <div class="footer-section">
-          <h3>Contacto</h3>
-          <a href="#">Redacción</a>
-          <a href="#">Publicidad</a>
-          <a href="#">Trabaja con nosotros</a>
+          <h3>📞 Contacto</h3>
+          <a href="#">📝 Redacción</a>
+          <a href="#">💼 Publicidad</a>
+          <a href="#">👥 Trabaja con nosotros</a>
+          <a href="#">📧 Newsletter</a>
+          <a href="#">❓ Soporte</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>📱 Descarga nuestra App</h3>
+          <p>Lleva las noticias contigo donde quiera que vayas.</p>
+          <div class="app-download">
+            <button class="app-btn">📲 App Store</button>
+            <button class="app-btn">🤖 Play Store</button>
+          </div>
         </div>
       </div>
 
-      <div class="copyright">
-        <p>&copy; 2025 Mi Empresa. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a></p>
-        <address>
-          <p>Contáctanos en: info@miempresa.com</p>
-        </address>
+      <div class="footer-bottom">
+        <div class="copyright">
+          <p>&copy; 2024 Tecnonoticias. Todos los derechos reservados.</p>
+          <div class="legal-links">
+            <a href="/privacidad">🔒 Política de Privacidad</a>
+            <a href="/terminos">📄 Términos de Servicio</a>
+            <a href="/cookies">🍪 Cookies</a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
-<script src="comando.js"></script>
+
+  <script src="comando.js"></script>
 </body>
 </html>
