@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      transition: background-color 0.5s;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    select {
+      margin-top: 20px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    p {
+      font-size: 18px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript</h1>
+  
+  
+  <button onclick="cambiarColor()">Cambiar color de fondo</button>
+
+  <div>
+    <select id="menu" onchange="mostrarOpcion()">
+      <option value="">-- Selecciona una opción --</option>
+      <option value="Opción 1">Opción 1</option>
+      <option value="Opción 2">Opción 2</option>
+      <option value="Opción 3">Opción 3</option>
+    </select>
+    <p id="resultado"></p>
+  </div>
+
+  <script>
+  
+    const colores = ["purple", "orange", "green"];
+    let indiceColor = 0;
+
+    function cambiarColor() {
+      document.body.style.backgroundColor = colores[indiceColor];
+      indiceColor = (indiceColor + 1) % colores.length;
+    }
+
+    function mostrarOpcion() {
+      const menu = document.getElementById("menu");
+      const resultado = document.getElementById("resultado");
+      resultado.textContent = "Has seleccionado: " + menu.value;
+    }
+  </script>
+</body>
+</html>

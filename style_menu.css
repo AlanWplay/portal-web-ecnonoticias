@@ -62,13 +62,13 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  height: 70px;
+  height: 8 0px;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0px;
 }
 
 .logo-img {

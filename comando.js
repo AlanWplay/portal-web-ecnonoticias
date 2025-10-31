@@ -25,13 +25,13 @@ class ThemeManager {
 
     enableDarkMode() {
         document.body.classList.add('dark-mode');
-        this.updateToggleButtons('Modo Claro', '☀️ Cambiar a modo claro');
+        this.updateToggleButtons('Modo Oscuro', '🌙 Cambiar a modo oscuro');
         localStorage.setItem('theme', 'dark');
     }
 
     enableLightMode() {
         document.body.classList.remove('dark-mode');
-        this.updateToggleButtons('Modo Oscuro', '🌙 Cambiar a modo oscuro');
+        this.updateToggleButtons('Modo Claro', '☀️ Cambiar a modo claro');
         localStorage.setItem('theme', 'light');
     }
 
@@ -122,35 +122,474 @@ class MobileMenu {
     }
 }
 
-// Gestor del Buscador
+// Gestor del Buscador Mejorado
 class SearchManager {
     constructor() {
         this.searchToggle = document.getElementById('searchToggle');
         this.searchBox = document.getElementById('searchBox');
+        this.searchForm = document.getElementById('searchForm');
+        this.searchInput = document.getElementById('searchInput');
+        this.searchResults = document.getElementById('searchResults');
+        this.suggestionTags = document.querySelectorAll('.suggestion-tag');
+        
+        this.articles = []; // Aquí almacenaremos los artículos para buscar
         this.init();
     }
 
     init() {
         if (this.searchToggle && this.searchBox) {
             this.setupEventListeners();
+            this.loadArticlesData();
         }
     }
 
+    // Cargar datos de los artículos para la búsqueda
+    loadArticlesData() {
+        // Obtener todos los artículos de la página
+        const featuredArticles = document.querySelectorAll('.article');
+        const sidebarArticles = document.querySelectorAll('.sidebar-article');
+        const newsCards = document.querySelectorAll('.news-card');
+        const carouselSlides = document.querySelectorAll('.carrusel-slide');
+
+        // Procesar artículos destacados
+        featuredArticles.forEach((article, index) => {
+            const title = article.querySelector('h3 a')?.textContent || '';
+            const category = article.querySelector('.article-category')?.textContent || '';
+            const excerpt = article.querySelector('p')?.textContent || '';
+            const link = article.querySelector('h3 a')?.getAttribute('href') || '#';
+            
+            if (title) {
+                this.articles.push({
+                    type: 'featured',
+                    title,
+                    category,
+                    excerpt,
+                    link,
+                    element: article
+                });
+            }
+        });
+
+        // Procesar artículos del sidebar
+        sidebarArticles.forEach((article, index) => {
+            const title = article.querySelector('h3 a')?.textContent || '';
+            const category = article.querySelector('.sidebar-category')?.textContent || '';
+            const excerpt = article.querySelector('p')?.textContent || '';
+            const link = article.querySelector('h3 a')?.getAttribute('href') || '#';
+            
+            if (title) {
+                this.articles.push({
+                    type: 'sidebar',
+                    title,
+                    category,
+                    excerpt,
+                    link,
+                    element: article
+                });
+            }
+        });
+
+        // Procesar tarjetas de noticias
+        newsCards.forEach((card, index) => {
+            const title = card.querySelector('.card-title')?.textContent || '';
+            const category = card.querySelector('.category')?.textContent || '';
+            const excerpt = card.querySelector('.card-excerpt')?.textContent || '';
+            
+            if (title) {
+                this.articles.push({
+                    type: 'news-card',
+                    title,
+                    category,
+                    excerpt,
+                    link: '#', // Las tarjetas no tienen enlaces en el HTML proporcionado
+                    element: card
+                });
+            }
+        });
+
+        // Procesar slides del carrusel
+        carouselSlides.forEach((slide, index) => {
+            const title = slide.querySelector('h2')?.textContent || '';
+            const category = slide.querySelector('.slide-category')?.textContent || '';
+            const excerpt = slide.querySelector('p')?.textContent || '';
+            const link = slide.querySelector('.slide-link')?.getAttribute('href') || '#';
+            
+            if (title) {
+                this.articles.push({
+                    type: 'carousel',
+                    title,
+                    category,
+                    excerpt,
+                    link,
+                    element: slide
+                });
+            }
+        });
+    }
+
     setupEventListeners() {
+        // Toggle del buscador
         this.searchToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             this.searchBox.classList.toggle('active');
+            if (this.searchBox.classList.contains('active')) {
+                this.searchInput.focus();
+                this.showSearchSuggestions();
+            }
         });
 
+        // Cerrar buscador al hacer clic fuera
         document.addEventListener('click', (e) => {
             if (!this.searchBox.contains(e.target) && e.target !== this.searchToggle) {
                 this.searchBox.classList.remove('active');
+                this.clearSearchResults();
             }
         });
 
         this.searchBox.addEventListener('click', (e) => {
             e.stopPropagation();
         });
+
+        // Envío del formulario de búsqueda
+        this.searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.performSearch(this.searchInput.value.trim());
+        });
+
+        // Búsqueda en tiempo real
+        this.searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+            if (query.length > 2) {
+                this.performSearch(query);
+            } else {
+                this.showSearchSuggestions();
+            }
+        });
+
+        // Sugerencias de búsqueda rápida
+        this.suggestionTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                const searchTerm = tag.getAttribute('data-search');
+                this.searchInput.value = searchTerm;
+                this.performSearch(searchTerm);
+            });
+        });
+
+        // Tecla ESC para cerrar resultados
+        this.searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.clearSearchResults();
+                this.searchBox.classList.remove('active');
+            }
+        });
+    }
+
+    performSearch(query) {
+        if (!query) {
+            this.showSearchSuggestions();
+            return;
+        }
+
+        const results = this.searchArticles(query);
+        this.displaySearchResults(results, query);
+    }
+
+    searchArticles(query) {
+        const searchTerms = query.toLowerCase().split(' ');
+        
+        return this.articles.filter(article => {
+            const searchableText = `
+                ${article.title.toLowerCase()}
+                ${article.category.toLowerCase()}
+                ${article.excerpt.toLowerCase()}
+            `;
+            
+            return searchTerms.some(term => 
+                searchableText.includes(term)
+            );
+        });
+    }
+
+    displaySearchResults(results, query) {
+        if (results.length === 0) {
+            this.searchResults.innerHTML = `
+                <div class="no-results">
+                    <h4>🔍 No se encontraron resultados</h4>
+                    <p>No hay artículos que coincidan con "<strong>${query}</strong>"</p>
+                    <div class="search-tips">
+                        <p>💡 Sugerencias:</p>
+                        <ul>
+                            <li>Revisa la ortografía</li>
+                            <li>Usa términos más generales</li>
+                            <li>Prueba con otras palabras clave</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+
+        let resultsHTML = `
+            <div class="search-results-header">
+                <h4>🔍 Resultados de búsqueda</h4>
+                <p>${results.length} artículo(s) encontrado(s) para "<strong>${query}</strong>"</p>
+            </div>
+            <div class="search-results-list">
+        `;
+
+        results.forEach(article => {
+            const highlightedTitle = this.highlightText(article.title, query);
+            const highlightedExcerpt = this.highlightText(
+                article.excerpt.length > 150 ? 
+                article.excerpt.substring(0, 150) + '...' : 
+                article.excerpt, 
+                query
+            );
+
+            resultsHTML += `
+                <div class="search-result-item" data-type="${article.type}">
+                    <span class="result-category">${article.category}</span>
+                    <h5 class="result-title">
+                        <a href="${article.link}" onclick="this.closest('.search-box').classList.remove('active')">
+                            ${highlightedTitle}
+                        </a>
+                    </h5>
+                    <p class="result-excerpt">${highlightedExcerpt}</p>
+                    <div class="result-meta">
+                        <span class="result-type">${this.getTypeLabel(article.type)}</span>
+                        <a href="${article.link}" class="result-link" onclick="this.closest('.search-box').classList.remove('active')">
+                            Leer más →
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+
+        resultsHTML += '</div>';
+        this.searchResults.innerHTML = resultsHTML;
+
+        // Añadir estilos para los resultados si no existen
+        this.addSearchResultsStyles();
+    }
+
+    highlightText(text, query) {
+        if (!query) return text;
+        
+        const terms = query.toLowerCase().split(' ');
+        let highlightedText = text;
+        
+        terms.forEach(term => {
+            if (term.length > 2) {
+                const regex = new RegExp(`(${term})`, 'gi');
+                highlightedText = highlightedText.replace(regex, '<mark>$1</mark>');
+            }
+        });
+        
+        return highlightedText;
+    }
+
+    getTypeLabel(type) {
+        const labels = {
+            'featured': '📰 Destacado',
+            'sidebar': '📢 Reciente',
+            'news-card': '📊 Noticia',
+            'carousel': '🚀 Popular'
+        };
+        return labels[type] || '📄 Artículo';
+    }
+
+    showSearchSuggestions() {
+        this.searchResults.innerHTML = `
+            <div class="search-suggestions">
+                <h4>🔍 Búsquedas rápidas:</h4>
+                <div class="suggestion-tags">
+                    <span class="suggestion-tag" data-search="tecnología">Tecnología</span>
+                    <span class="suggestion-tag" data-search="videojuegos">Videojuegos</span>
+                    <span class="suggestion-tag" data-search="inteligencia artificial">IA</span>
+                    <span class="suggestion-tag" data-search="apple">Apple</span>
+                    <span class="suggestion-tag" data-search="microsoft">Microsoft</span>
+                    <span class="suggestion-tag" data-search="robot">Robótica</span>
+                    <span class="suggestion-tag" data-search="seguridad">Ciberseguridad</span>
+                </div>
+                <div class="search-tips">
+                    <p>💡 Escribe al menos 3 caracteres para buscar</p>
+                </div>
+            </div>
+        `;
+
+        // Re-asignar event listeners a las nuevas sugerencias
+        this.searchResults.querySelectorAll('.suggestion-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                const searchTerm = tag.getAttribute('data-search');
+                this.searchInput.value = searchTerm;
+                this.performSearch(searchTerm);
+            });
+        });
+    }
+
+    clearSearchResults() {
+        this.searchResults.innerHTML = '';
+        this.searchInput.value = '';
+    }
+
+    addSearchResultsStyles() {
+        if (!document.getElementById('search-results-styles')) {
+            const styles = `
+                <style id="search-results-styles">
+                    .search-results {
+                        max-height: 400px;
+                        overflow-y: auto;
+                        margin-top: 15px;
+                    }
+
+                    .search-results-header {
+                        padding: 10px 0;
+                        border-bottom: 1px solid var(--border-color);
+                        margin-bottom: 15px;
+                    }
+
+                    .search-results-header h4 {
+                        margin: 0 0 5px 0;
+                        color: var(--text-color);
+                    }
+
+                    .search-results-header p {
+                        margin: 0;
+                        font-size: 0.9rem;
+                        opacity: 0.8;
+                    }
+
+                    .search-results-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                    }
+
+                    .search-result-item {
+                        padding: 15px;
+                        background: var(--bg-color);
+                        border-radius: 8px;
+                        border: 1px solid var(--border-color);
+                        transition: all 0.3s ease;
+                    }
+
+                    .search-result-item:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                    }
+
+                    .result-category {
+                        display: inline-block;
+                        background: var(--button-bg);
+                        color: white;
+                        padding: 2px 8px;
+                        border-radius: 12px;
+                        font-size: 0.7rem;
+                        font-weight: 600;
+                        margin-bottom: 8px;
+                    }
+
+                    .result-title {
+                        margin: 0 0 8px 0;
+                        font-size: 1rem;
+                    }
+
+                    .result-title a {
+                        color: var(--text-color);
+                        text-decoration: none;
+                    }
+
+                    .result-title a:hover {
+                        color: var(--accent-color);
+                    }
+
+                    .result-excerpt {
+                        margin: 0 0 10px 0;
+                        font-size: 0.9rem;
+                        opacity: 0.8;
+                        line-height: 1.4;
+                    }
+
+                    .result-meta {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-size: 0.8rem;
+                    }
+
+                    .result-type {
+                        opacity: 0.7;
+                    }
+
+                    .result-link {
+                        color: var(--button-bg);
+                        text-decoration: none;
+                        font-weight: 500;
+                    }
+
+                    .result-link:hover {
+                        color: var(--button-hover);
+                    }
+
+                    mark {
+                        background: #ffeb3b;
+                        color: #000;
+                        padding: 1px 2px;
+                        border-radius: 2px;
+                    }
+
+                    .no-results {
+                        text-align: center;
+                        padding: 20px;
+                    }
+
+                    .no-results h4 {
+                        margin-bottom: 10px;
+                        color: var(--text-color);
+                    }
+
+                    .search-tips {
+                        margin-top: 15px;
+                        padding: 15px;
+                        background: var(--bg-color);
+                        border-radius: 8px;
+                        border: 1px solid var(--border-color);
+                    }
+
+                    .search-tips ul {
+                        margin: 10px 0 0 20px;
+                        text-align: left;
+                    }
+
+                    .search-tips li {
+                        margin-bottom: 5px;
+                    }
+
+                    .suggestion-tags {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 8px;
+                        margin: 15px 0;
+                    }
+
+                    .suggestion-tag {
+                        background: var(--button-bg);
+                        color: white;
+                        padding: 6px 12px;
+                        border-radius: 16px;
+                        font-size: 0.8rem;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
+
+                    .suggestion-tag:hover {
+                        background: var(--button-hover);
+                        transform: translateY(-2px);
+                    }
+                </style>
+            `;
+            document.head.insertAdjacentHTML('beforeend', styles);
+        }
     }
 }
 
@@ -321,7 +760,7 @@ class App {
             // Inicializar managers
             new ThemeManager();
             new MobileMenu();
-            new SearchManager();
+            new SearchManager(); // Ahora incluye funcionalidad completa de búsqueda
             
             // Inicializar carrusel si existe
             const carruselElement = document.querySelector('.carrusel');
@@ -387,3 +826,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lazyImages.forEach(img => imageObserver.observe(img));
 });
+
+// Preload de imágenes críticas al cargar la página
+document.addEventListener('DOMContentLoaded', preloadCriticalImages);
