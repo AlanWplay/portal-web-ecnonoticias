@@ -805,6 +805,64 @@
       </div>
     </div>
   </footer>
-<script src="/comando 2.js"></script>
+<script>
+    // Funcionalidad del menú hamburguesa
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const fullscreenMenu = document.getElementById('fullscreenMenu');
+    const closeBtn = document.getElementById('closeBtn');
+    
+    function openMenu() {
+      fullscreenMenu.classList.add('active');
+    }
+    
+    function closeMenu() {
+      fullscreenMenu.classList.remove('active');
+    }
+    
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    
+    // Cerrar menú al hacer clic en un enlace
+    const menuLinks = document.querySelectorAll('.menu-links a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    // Funcionalidad del modo oscuro
+    const themeToggle = document.getElementById('themeToggle');
+    
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        themeToggle.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeToggle.textContent = 'Modo Oscuro';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+    
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeToggle.textContent = 'Modo Claro';
+    }
+    
+    // Funcionalidad del buscador
+    const searchToggle = document.getElementById('searchToggle');
+    const searchBox = document.getElementById('searchBox');
+    
+    searchToggle.addEventListener('click', () => {
+      searchBox.classList.toggle('active');
+    });
+    
+    // Cerrar buscador al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!searchToggle.contains(e.target) && !searchBox.contains(e.target)) {
+        searchBox.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
